@@ -1,0 +1,8 @@
+build:
+  image: trion/ng-cli
+  before_script:
+    - npm ci
+
+  script:
+    - ng build --prod --deleteOutputPath=true --outputPath=../public_html
+  
