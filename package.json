@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "deploy": "ng build --prod --output-path=../deploy/public_html && git --exec-path=../deploy/public_html add . && git --exec-path=../deploy/public_html commit -m \"echo %npm_package_version%\" && git --exec-path=../deploy/public_html pull && git --exec-path=../deploy/public_html push origin/Deploy",
+    "push": "git push",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
