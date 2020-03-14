@@ -1,11 +1,11 @@
 {
   "name": "lugh",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "deploy": "ng build --prod --output-path=../deploy/public_html && git --exec-path=../deploy add . && git --exec-path=../deploy commit -m \"echo %npm_package_version%\" && git --exec-path=../deploy pull && git --exec-path=../deploy push origin/Deploy",
+    "deploy": "ng build --prod --output-path=../deploy/public_html && cd ../deploy && git add . && git commit -m \"%npm_package_version% - %DATE% - %TIME%\" && git push origin Deploy --force",
     "push": "git push",
     "test": "ng test",
     "lint": "ng lint",

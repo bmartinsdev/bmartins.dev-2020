@@ -4,7 +4,7 @@ import { LughKanbanComponent } from './lugh-kanban/lugh-kanban.component';
 
 
 const routes: Routes = [
-  { path: '/', component: LughKanbanComponent },
+  { path: '', component: LughKanbanComponent },
   { path: 'changelog', component: LughKanbanComponent }
 ];
 
