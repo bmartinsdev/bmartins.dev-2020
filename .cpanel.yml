@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - rm -rf ../public_html/*
+    - npm i
+    - ng build --outputPath=../public_html --prod=true 
