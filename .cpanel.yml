@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - rm -rf ../public_html/*
+    - cp public_html/* ../public_html/
