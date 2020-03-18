@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LughBacklogCardComponent } from './lugh-backlog-card.component';
+import { LgBoardComponent } from './lg-board.component';
 
-describe('LughBacklogCardComponent', () => {
-  let component: LughBacklogCardComponent;
-  let fixture: ComponentFixture<LughBacklogCardComponent>;
+describe('LgBoardComponent', () => {
+  let component: LgBoardComponent;
+  let fixture: ComponentFixture<LgBoardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LughBacklogCardComponent ]
+      declarations: [ LgBoardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LughBacklogCardComponent);
+    fixture = TestBed.createComponent(LgBoardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

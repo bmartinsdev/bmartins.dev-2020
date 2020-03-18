@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "applgwebsite": {
+      "hosting": {
+        "lg": [
+          "applgwebsite"
+        ]
+      }
+    }
+  }
+}

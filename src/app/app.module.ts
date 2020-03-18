@@ -4,29 +4,44 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LughKanbanComponent } from './lugh-kanban/lugh-kanban.component';
-import { LughBacklogComponent } from './lugh-kanban/lugh-backlog/lugh-backlog.component';
-import { LughBoardComponent } from './lugh-kanban/lugh-board/lugh-board.component';
-import { LughColumnComponent } from './lugh-kanban/lugh-board/lugh-column/lugh-column.component';
-import { LughCardComponent } from './lugh-kanban/lugh-board/lugh-column/lugh-card/lugh-card.component';
-import { LughBacklogCardComponent } from './lugh-kanban/lugh-backlog/lugh-backlog-card/lugh-backlog-card.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+
+import { LgKanbanComponent } from './lg-kanban/lg-kanban.component';
+import { LgBacklogComponent } from './lg-kanban/lg-backlog/lg-backlog.component';
+import { LgBoardComponent } from './lg-kanban/lg-board/lg-board.component';
+import { LgColumnComponent } from './lg-kanban/lg-board/lg-column/lg-column.component';
+import { LgCardComponent } from './lg-kanban/lg-board/lg-column/lg-card/lg-card.component';
+import { LgBacklogCardComponent } from './lg-kanban/lg-backlog/lg-backlog-card/lg-backlog-card.component';
+
+import { LgTasksService } from './services/lg-tasks.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LughKanbanComponent,
-    LughBacklogComponent,
-    LughBoardComponent,
-    LughColumnComponent,
-    LughCardComponent,
-    LughBacklogCardComponent
+    LgKanbanComponent,
+    LgBacklogComponent,
+    LgBoardComponent,
+    LgColumnComponent,
+    LgBacklogCardComponent,
+    LgCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase, 'lughwebsite'),
+    AngularFirestoreModule,
+    DragDropModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    LgTasksService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

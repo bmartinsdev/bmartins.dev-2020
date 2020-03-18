@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LughColumnComponent } from './lugh-column.component';
+import { LgBacklogComponent } from './lg-backlog.component';
 
-describe('LughColumnComponent', () => {
-  let component: LughColumnComponent;
-  let fixture: ComponentFixture<LughColumnComponent>;
+describe('LgBacklogComponent', () => {
+  let component: LgBacklogComponent;
+  let fixture: ComponentFixture<LgBacklogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LughColumnComponent ]
+      declarations: [ LgBacklogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LughColumnComponent);
+    fixture = TestBed.createComponent(LgBacklogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

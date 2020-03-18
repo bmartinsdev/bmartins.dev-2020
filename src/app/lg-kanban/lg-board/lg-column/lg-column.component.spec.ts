@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LughCardComponent } from './lugh-card.component';
+import { LgColumnComponent } from './lg-column.component';
 
-describe('LughCardComponent', () => {
-  let component: LughCardComponent;
-  let fixture: ComponentFixture<LughCardComponent>;
+describe('LgColumnComponent', () => {
+  let component: LgColumnComponent;
+  let fixture: ComponentFixture<LgColumnComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LughCardComponent ]
+      declarations: [ LgColumnComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LughCardComponent);
+    fixture = TestBed.createComponent(LgColumnComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
