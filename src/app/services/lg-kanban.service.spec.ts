@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LgTasksService } from './lg-tasks.service';
+import { LgKanbanService } from './lg-kanban.service';
 
-describe('LgTasksService', () => {
-  let service: LgTasksService;
+describe('LgKanbanService', () => {
+  let service: LgKanbanService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LgTasksService);
+    service = TestBed.inject(LgKanbanService);
   });
 
   it('should be created', () => {

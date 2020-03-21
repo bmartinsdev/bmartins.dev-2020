@@ -17,7 +17,7 @@ import { LgColumnComponent } from './lg-kanban/lg-board/lg-column/lg-column.comp
 import { LgCardComponent } from './lg-kanban/lg-board/lg-column/lg-card/lg-card.component';
 import { LgBacklogCardComponent } from './lg-kanban/lg-backlog/lg-backlog-card/lg-backlog-card.component';
 
-import { LgTasksService } from './services/lg-tasks.service';
+import { LgKanbanService } from './services/lg-kanban.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { LgTasksService } from './services/lg-tasks.service';
     DragDropModule
   ],
   providers: [
-    LgTasksService
+    LgKanbanService
   ],
   bootstrap: [
     AppComponent

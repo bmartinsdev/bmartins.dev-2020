@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LgBacklogComponent } from './lg-backlog/lg-backlog.component';
 import { LgBoardComponent } from './lg-board/lg-board.component';
-import { LgTasksService } from '../services/lg-tasks.service'
+import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
+import { LgKanbanService } from '../services/lg-kanban.service';
+import { LgSection } from '../classes/lg-section';
 
 @Component({
   selector: 'app-lg-kanban',
@@ -9,12 +11,27 @@ import { LgTasksService } from '../services/lg-tasks.service'
   styleUrls: ['./lg-kanban.component.sass']
 })
 export class LgKanbanComponent implements OnInit {
-  constructor(private taskDB: LgTasksService ) { }
+  sections$: Observable<LgSection[]>;
+
+  constructor(private taskDB: LgKanbanService) { }
 
   ngOnInit(): void {
-    this.taskDB.getTasks().subscribe(tasks => {
-      console.log(tasks);
-    });
+    this.loadSections();
   }
 
+  loadSections(){
+    this.sections$ = this.taskDB.getSections();
+  }
+  addSection(){
+    let section = new LgSection({"title":"teste","position":35});
+    this.taskDB.createSection(section);
+  }
+  updateSection(section:LgSection){
+    section.title = "update";
+    section.position++;
+    this.taskDB.updateSection(section);
+  }
+  deleteSection(section:LgSection){
+    this.taskDB.deleteSection(section);
+  }
 }
