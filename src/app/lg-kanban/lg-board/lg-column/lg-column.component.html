@@ -1,2 +1,11 @@
-<h3>Column Name</h3>
-<app-lg-card></app-lg-card>
+<h3>{{section.title}}</h3> 
+<div *ngIf="tasks$ | async; let tasks; else loading"
+cdkDropList
+[cdkDropListData]="section"
+(cdkDropListDropped)="drop($event)"
+class="lg-kanban-list">
+    <app-lg-card *ngFor="let task of tasks" [task]="task" [cdkDragData]="task" cdkDrag></app-lg-card>
+</div>
+<ng-template #loading>
+    loading tasks...
+</ng-template>

@@ -1,17 +1,7 @@
-<div cdkDropListGroup>
-    <app-lg-backlog></app-lg-backlog>
-    <app-lg-board></app-lg-board>
+<div *ngIf="sections$ | async; let sections; else loading" cdkDropListGroup>
+    <app-lg-backlog [section]="sections[0]"></app-lg-backlog>
+    <app-lg-board [sections]="sections"></app-lg-board>
 </div>
-
-<ul *ngIf="sections$ | async; let sections; else loading">
-    <li *ngFor="let section of sections">
-        {{ section.id }} for {{ section.title }}
-        <button (click)="updateSection(section)">update</button>
-        <button (click)="deleteSection(section)">delete</button>
-    </li>
-    <li *ngIf="sections.length === 0">empty</li>
-</ul>
 <ng-template #loading>
     loading...
 </ng-template>
-<button (click)="addSection()">add</button>

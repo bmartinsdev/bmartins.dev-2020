@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { LgTask } from 'src/app/classes/lg-task';
 
 @Component({
   selector: 'app-lg-card',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lg-card.component.sass']
 })
 export class LgCardComponent implements OnInit {
-
+  @Input() task:LgTask;
   constructor() { }
 
   ngOnInit(): void {

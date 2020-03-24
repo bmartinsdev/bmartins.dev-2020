@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { LgColumnComponent } from './lg-column/lg-column.component';
+import { Component, OnInit, Input } from '@angular/core';
+import { LgColumnComponent } from 'src/app/lg-kanban/lg-board/lg-column/lg-column.component';
+import { LgSection } from 'src/app/classes/lg-section';
 
 @Component({
   selector: 'app-lg-board',
@@ -7,7 +8,7 @@ import { LgColumnComponent } from './lg-column/lg-column.component';
   styleUrls: ['./lg-board.component.sass']
 })
 export class LgBoardComponent implements OnInit {
-
+  @Input() sections: LgSection[];
   constructor() { }
 
   ngOnInit(): void {

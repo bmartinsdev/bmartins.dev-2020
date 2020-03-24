@@ -3,6 +3,7 @@ import { LgComment } from './lg-comment';
 export class LgTask {
     id: string;
     title: string;
+    section: string;
     separator: boolean;
     description: string;
     position: number;
@@ -13,6 +14,7 @@ export class LgTask {
     constructor(task: any = {}) {
         this.id = task.id;
         this.title = task.title || '';
+        this.section = task.section;
         this.separator = task.separator || false;
         this.description = task.description || '';
         this.position = task.position || 0;
@@ -24,6 +26,7 @@ export class LgTask {
             return {
                 "title": this.title,
                 "position": this.position,
+                "section": this.section,
                 "separator": this.separator
             };
         }
@@ -31,6 +34,7 @@ export class LgTask {
             "title": this.title,
             "description": this.description,
             "position": this.position,
+            "section": this.section,
             "completion": this.completion,
             "separator": this.separator
         };
