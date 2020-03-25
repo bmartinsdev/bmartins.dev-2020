@@ -1,5 +1,4 @@
 <div *ngIf="sections$ | async; let sections; else loading" cdkDropListGroup>
-    <app-lg-backlog [section]="sections[0]"></app-lg-backlog>
     <app-lg-board [sections]="sections"></app-lg-board>
 </div>
 <ng-template #loading>

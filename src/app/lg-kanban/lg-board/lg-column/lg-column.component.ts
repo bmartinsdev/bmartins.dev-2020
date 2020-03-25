@@ -12,7 +12,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 })
 export class LgColumnComponent implements OnInit {
   @Input() section: LgSection;
-  tasks$: Observable<LgTask[]>;
+  loadedTasks: boolean = false;
 
   constructor(private taskDB: LgKanbanService) { }
 
@@ -21,11 +21,17 @@ export class LgColumnComponent implements OnInit {
   }
 
   loadTasks(){
-    this.tasks$ = this.taskDB.getTasks(this.section.id);
+    this.taskDB.getTasks(this.section.id).subscribe(
+      tasks => {
+        this.section.tasks = tasks;
+        this.loadedTasks = true;
+      },
+      err => console.error('Observer got an error: ' + err)
+    );;
   }
 
-  addTask(){
-    let task = new LgTask({"title":"teste","position":35});
+  addTask(i:number){
+    let task = new LgTask({"title":"Task #"+i,"position":0});
     this.taskDB.createTask(task);
   }
 
@@ -38,10 +44,16 @@ export class LgColumnComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    console.log(event);
     let targetSection = Object.assign(new LgSection, event.container.data);
     let task = Object.assign(new LgTask, event.item.data);
     task.section = targetSection.id;
+    if(targetSection.tasks.length === 0){
+      task.position = task.generatePosition("new");
+    }else if(targetSection.tasks.length === event.currentIndex){
+      task.position = targetSection.tasks[event.currentIndex-1].generatePosition("last");
+    }else{
+      task.position = targetSection.tasks[event.currentIndex].generatePosition("before");
+    }
     this.updateTask(task);
   }
 }

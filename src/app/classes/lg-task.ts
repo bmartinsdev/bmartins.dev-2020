@@ -1,4 +1,5 @@
 import { LgComment } from './lg-comment';
+import { isUndefined } from 'util';
 
 export class LgTask {
     id: string;
@@ -19,6 +20,18 @@ export class LgTask {
         this.description = task.description || '';
         this.position = task.position || 0;
         this.completion = task.completion || 0;
+    }
+
+    generatePosition(action?:string) {
+        switch(action){
+            case "new": return this.randomNumberBetween(9999,99999);
+            case "before": return this.randomNumberBetween(this.position-99, this.position-1);
+            case "last": return this.randomNumberBetween(this.position + 1, this.position + 99);
+        }
+    }
+
+    randomNumberBetween(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
     serialized() {

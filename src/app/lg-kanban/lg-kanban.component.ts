@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LgBacklogComponent } from './lg-backlog/lg-backlog.component';
 import { LgBoardComponent } from './lg-board/lg-board.component';
 import { Observable } from 'rxjs';
 import { LgKanbanService } from '../services/lg-kanban.service';
