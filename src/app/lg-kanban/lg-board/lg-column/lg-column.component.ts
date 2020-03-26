@@ -30,11 +30,6 @@ export class LgColumnComponent implements OnInit {
     );;
   }
 
-  addTask(i:number){
-    let task = new LgTask({"title":"Task #"+i,"position":0});
-    this.taskDB.createTask(task);
-  }
-
   updateTask(task:LgTask){
     this.taskDB.updateTask(task);
   }

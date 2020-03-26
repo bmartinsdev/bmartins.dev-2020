@@ -5,7 +5,7 @@ cdkDropList
 (cdkDropListDropped)="drop($event)"
 class="lg-kanban-list">
     <app-lg-card *ngFor="let task of section.tasks" [task]="task" [cdkDragData]="task" cdkDrag></app-lg-card>
-    <app-lg-tasl-form [section]="section.id"></app-lg-tasl-form>
+    <app-lg-task-form *ngIf="section.id === '0gYBqxRhibDWfhhkxHlW'" [sectionId]="section.id" [mode]="'simple'"></app-lg-task-form>
 </div>
 <ng-template #loading>
     loading tasks...

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { LgTask } from '../../../../classes/lg-task';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { LgTask } from 'src/app/classes/lg-task';
+import { LgKanbanService } from 'src/app/services/lg-kanban.service';
 
 @Component({
   selector: 'app-lg-task-form',
@@ -9,14 +10,21 @@ import { LgTask } from '../../../../classes/lg-task';
 })
 export class LgTaskFormComponent implements OnInit {
   @Input() sectionId:number;
-  titleTaskFormControl = new FormControl('', [
-    Validators.required
-  ]);
-  mode: string = 'simple';
+  addTaskForm = new FormGroup({
+    'title': new FormControl('', [
+      Validators.required
+    ])
+  });
+  @Input() mode: string = 'simple';
 
-  constructor() { }
+  constructor(private taskDB: LgKanbanService) { }
 
   ngOnInit(): void {
   }
 
+  addTask(){
+    let task = new LgTask({"title": this.addTaskForm.get('title').value, "section":this.sectionId});
+    this.taskDB.createTask(task).then(arg => console.log(arg));
+    this.addTaskForm.get('title').setValue('');
+  }
 }

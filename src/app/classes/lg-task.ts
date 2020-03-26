@@ -13,12 +13,13 @@ export class LgTask {
     comments: LgComment[];
 
     constructor(task: any = {}) {
+        console.log(task);
         this.id = task.id;
         this.title = task.title || '';
         this.section = task.section;
         this.separator = task.separator || false;
         this.description = task.description || '';
-        this.position = task.position || 0;
+        this.position = task.position || this.generatePosition("new");
         this.completion = task.completion || 0;
     }
 
