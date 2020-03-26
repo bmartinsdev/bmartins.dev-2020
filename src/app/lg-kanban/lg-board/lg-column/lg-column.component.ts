@@ -46,13 +46,17 @@ export class LgColumnComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     let targetSection = Object.assign(new LgSection, event.container.data);
     let task = Object.assign(new LgTask, event.item.data);
+    let tPosBefore = targetSection.tasks[event.currentIndex-1];
+    let tPosAfter = targetSection.tasks[event.currentIndex];
     task.section = targetSection.id;
-    if(targetSection.tasks.length === 0){
-      task.position = task.generatePosition("new");
-    }else if(targetSection.tasks.length === event.currentIndex){
-      task.position = targetSection.tasks[event.currentIndex-1].generatePosition("last");
+    if(tPosBefore && tPosAfter){
+      task.position = tPosBefore.generatePosition("between", tPosAfter.position);
+    }else if(tPosAfter){
+      task.position = tPosAfter.generatePosition("first");
+    }else if(tPosBefore){
+      task.position = tPosBefore.generatePosition("last");
     }else{
-      task.position = targetSection.tasks[event.currentIndex].generatePosition("before");
+      task.position = task.generatePosition("new");
     }
     this.updateTask(task);
   }

@@ -22,16 +22,13 @@ export class LgTask {
         this.completion = task.completion || 0;
     }
 
-    generatePosition(action?:string) {
+    generatePosition(action?:string, between?:number) {
         switch(action){
-            case "new": return this.randomNumberBetween(9999,99999);
-            case "before": return this.randomNumberBetween(this.position-99, this.position-1);
-            case "last": return this.randomNumberBetween(this.position + 1, this.position + 99);
+            case "new": return 99999;
+            case "between": return Math.round(between - ((between - this.position) / 2));
+            case "first": return Math.round(this.position - this.position / 17);
+            case "last": return Math.round(this.position + this.position / 17);
         }
-    }
-
-    randomNumberBetween(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
     serialized() {

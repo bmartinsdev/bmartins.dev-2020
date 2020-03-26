@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatInputModule } from '@angular/material/input';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -16,6 +17,7 @@ import { LgColumnComponent } from './lg-kanban/lg-board/lg-column/lg-column.comp
 import { LgCardComponent } from './lg-kanban/lg-board/lg-column/lg-card/lg-card.component';
 
 import { LgKanbanService } from './services/lg-kanban.service';
+import { LgTaskFormComponent } from './lg-kanban/lg-board/lg-column/lg-task-form/lg-task-form.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { LgKanbanService } from './services/lg-kanban.service';
     LgKanbanComponent,
     LgBoardComponent,
     LgColumnComponent,
-    LgCardComponent
+    LgCardComponent,
+    LgTaskFormComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { LgKanbanService } from './services/lg-kanban.service';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase, 'lughwebsite'),
     AngularFirestoreModule,
-    DragDropModule
+    DragDropModule,
+    MatInputModule
   ],
   providers: [
     LgKanbanService
