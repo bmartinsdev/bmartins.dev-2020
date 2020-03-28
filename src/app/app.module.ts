@@ -19,6 +19,7 @@ import { LgCardComponent } from './lg-kanban/lg-board/lg-column/lg-card/lg-card.
 
 import { LgKanbanService } from './services/lg-kanban.service';
 import { LgTaskFormComponent } from './lg-kanban/lg-board/lg-column/lg-task-form/lg-task-form.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LgTaskFormComponent } from './lg-kanban/lg-board/lg-column/lg-task-form
     LgBoardComponent,
     LgColumnComponent,
     LgCardComponent,
-    LgTaskFormComponent
+    LgTaskFormComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
