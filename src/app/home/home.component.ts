@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as p5 from 'p5';
 import { isUndefined } from 'util';
+import { createOfflineCompileUrlResolver } from '@angular/compiler';
 
 @Component({
   selector: 'app-home',
@@ -37,44 +38,49 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private drawing = function (p: any) {
     let nanites = [];
-    let r = p.windowHeight * 0.20;
+    let r = 140;
     let isMousePressed = false;
     let theta = 0.4;
-    let theta_vel = 0.04;
+    let theta_vel = 0.018;
+    let orbits = [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];
     p.setup = () => {
       p.createCanvas(p.windowWidth, p.windowHeight).parent('lg-home-flow');
       p.frameRate(30);
-      for (var i = 0; i < 10; i++) {
-        nanites[i] = new Nanite(p.random(p.windowWidth), p.random(p.windowHeight));
+      for (var i = 0; i < 20; i++) {
+        nanites[i] = new Nanite(0, 0);
       }
     };
     p.draw = () => {
       p.background(255);
       p.translate(p.windowWidth / 2, p.windowHeight / 2);
-      let xr = r * p.cos(theta);
-      let yr = r * p.sin(theta);
-      //p.ellipse(xr, yr, 5, 5);
-      theta += theta_vel;
-      for(let i=0; i < nanites.length; i++){
-        nanites[i].update(xr, yr, isMousePressed);
-        nanites[i].edges();
-        nanites[i].show();
+      let inc = 30;
+      for(let i=0; i < orbits.length; i++){
+        orbits[i].x = r * p.cos(theta+inc);
+        orbits[i].y = r * p.sin(theta+inc);
+        //p.ellipse(orbits[i].x, orbits[i].y, 5, 5);
+        inc = inc+10;
       }
+      theta += theta_vel;
+      let follow = 0;
+      for(let i=0; i < nanites.length; i++){
+        nanites[i].update(orbits[follow].x, orbits[follow].y, isMousePressed);
+        nanites[i].show();
+        follow++;
+        if(follow == 5) follow = 0;
+      }
+      p.ellipse(0, 0, r*2-1, r*2-1);
     };
 
     class Nanite {
       pos;
       vel;
-      orbit;
       acc;
-      macc;
       history = [];
-      intersectsCenter = false;
 
       constructor(x, y) {
         this.pos = p.createVector(x, y);
         this.vel = p5.Vector.random2D();
-        this.vel.mult(p.random(100));
+        this.vel.mult(8);
       }
     
       update(x, y, isMousePressed) {
@@ -89,26 +95,21 @@ export class HomeComponent implements OnInit, OnDestroy {
         let v = p.createVector(this.pos.x, this.pos.y);
         this.history.push(v);
 
-        if(this.history.length > 50)
+        if(this.history.length > 100)
           this.history.shift();
-      }
-    
-      edges(){
-        let dist = p.dist(p.windowWidth/2, p.windowHeight/2, this.pos.x, this.pos.y);
-        if(dist < 100)
-          this.intersectsCenter = true;
-        else
-          this.intersectsCenter = false;
       }
 
       show() {
         p.beginShape();
         for(let i = 1; i < this.history.length; i++){
-          p.stroke(0,0,0,i);
+          let opacity = i < 50 ? i: 75;
+          p.stroke(0,0,0,opacity);
           p.line(this.history[i].x, this.history[i].y, this.history[i-1].x, this.history[i-1].y);
         }
         p.endShape();
       };
     };
+
+    
   }
 }
