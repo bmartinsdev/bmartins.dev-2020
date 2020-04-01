@@ -11,9 +11,9 @@ import { createOfflineCompileUrlResolver } from '@angular/compiler';
 
 export class HomeComponent implements OnInit, OnDestroy {
   private p5;
-
   constructor() {
     window.onresize = this.onWindowResize;
+    p5.disableFriendlyErrors = true;
   }
 
   ngOnInit() {
@@ -40,28 +40,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     let nanites = [];
     let dumbNanites = [];
     let dumbOrbit = {x:0,y:0};
-    let dumbFollowX = 0;
-    let dumbFollowY = 0;
+    let dumbSpeed = 0.4;
     let r = 140;
     let theta = 0.4;
+    let followTimer = 0;
+    let followMouse = false;
     let theta_vel = 0.016;
     let wWidth = p.windowWidth;
     let wHeight = p.windowHeight;
     let orbits = [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];
-    let twitterImg;
-    let githubImg;
-    p.preload = () => {
-      twitterImg = p.loadImage('assets/twitter.svg');
-      githubImg = p.loadImage('assets/github.svg');
-    }
     p.setup = () => {
       p.createCanvas(wWidth, wHeight).parent('lg-home-flow');
       p.frameRate(24);
       for (var i = 0; i < 20; i++) {
-        nanites[i] = new Nanite(generateRandom(wWidth), generateRandom(wHeight), 4);
+        nanites[i] = new Nanite(generateRandom(wWidth), generateRandom(wHeight), 4, 160);
       }
-      for (var i = 0; i < 4; i++) {
-        dumbNanites[i] = new Nanite(0, 0, 6);
+      for (var i = 0; i < 5; i++) {
+        dumbNanites[i] = new Nanite(generateRandom(wWidth), generateRandom(wHeight), 3+i/6, 40);
       }
     };
     p.draw = () => {
@@ -69,69 +64,47 @@ export class HomeComponent implements OnInit, OnDestroy {
       wHeight = p.windowHeight;
       let follow = 0;
       let inc = 30;
+      let followX = wWidth/2;
+      let followY = wHeight/2;
       p.background(255);
-      p.translate(wWidth / 2, wHeight / 2);
-      dumbOrbit.x = 100 * Math.cos(theta+inc);
-      dumbOrbit.y = 100 * Math.sin(theta+inc);
+      dumbOrbit.x = p.mouseX + 14 * Math.cos(dumbSpeed+30);
+      dumbOrbit.y = p.mouseY + 14 * Math.sin(dumbSpeed+30);
       //p.ellipse(dumbOrbit.x, dumbOrbit.y, 5, 5);
       for(let i=0; i < orbits.length; i++){
-        orbits[i].x = r * Math.cos(theta+inc);
-        orbits[i].y = r * Math.sin(theta+inc);
+        orbits[i].x = wWidth/2 + r * Math.cos(theta+inc);
+        orbits[i].y = wHeight/2 + r * Math.sin(theta+inc);
         //p.ellipse(orbits[i].x, orbits[i].y, 5, 5);
         inc = inc+10;
       }
+      dumbSpeed += 0.14;
       theta += theta_vel;
+
       for(let i=0; i < nanites.length; i++){
         nanites[i].update(orbits[follow].x, orbits[follow].y);
         nanites[i].show();
         follow++;
         if(follow == 5) follow = 0;
       }
+      if(followMouse){
+        followX = dumbOrbit.x;
+        followY = dumbOrbit.y;
+        followTimer--;
+        if(followTimer == 0) followMouse = false;
+      }else{
+        followTimer = followTimer+2;
+        if(followTimer == 600) followMouse = true;
+      }
 
       for(let i=0; i < dumbNanites.length; i++){
-        dumbNanites[i].update(dumbFollowX, dumbFollowY);
+        dumbNanites[i].update(followX, followY);
         dumbNanites[i].show();
       }
-
-      if((p.dist(p.mouseX-wWidth/2, p.mouseY-wHeight/2, 20, 230) < 32) ||
-        (p.dist(p.mouseX-wWidth/2, p.mouseY-wHeight/2, -50, 230) < 32)){
-        followMouse(true);
-      }else{
-        followMouse(false);
-      }
-      if(p.dist(p.mouseX-wWidth/2, p.mouseY-wHeight/2, 20, 230) < 32){
-        p.tint(255, 127);
-      }else{
-        p.tint(0);
-      }
-      p.ellipse(35, 245, 30, 30);
-      p.image(twitterImg, 20, 230, 30, 30);
-      
-      if(p.dist(p.mouseX-wWidth/2, p.mouseY-wHeight/2, -50, 230) < 32){
-        p.tint(255, 127);
-      }else{
-        p.tint(0);
-      }
-      p.ellipse(-35, 245, 30, 30);
-      p.image(githubImg, -50, 230, 30, 30);
-
-      p.ellipse(0, 0, r*2-1, r*2-1);
+      p.stroke(255);
+      p.ellipse(wWidth/2, wHeight/2, r*2-1, r*2-1);
     };
-    function followMouse(active){
-      if(active){
-        dumbFollowX = p.mouseX-wWidth/2;
-        dumbFollowY = p.mouseY-wHeight/2;
-        p.cursor('pointer');
-      }else{
-        dumbFollowX = dumbOrbit.x;
-        dumbFollowY = dumbOrbit.y;
-        p.cursor();
-      }
 
-    }
     function generateRandom(size) {
-      let randomNum = Math.floor(Math.random() * size/2);
-      return Math.random() < 0.5 ? randomNum : -Math.abs(randomNum);
+      return Math.floor(Math.random() * size);
     }
 
     class Nanite {
@@ -140,11 +113,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       acc;
       speed;
       history = [];
+      historySize = 160;
 
-      constructor(x, y, speed) {
+      constructor(x, y, speed, history) {
         this.pos = p.createVector(x, y);
         this.vel = p5.Vector.random2D();
         this.speed = speed;
+        this.historySize = history;
         this.vel.mult(8);
       }
     
@@ -160,7 +135,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         let v = p.createVector(this.pos.x, this.pos.y);
         this.history.push(v);
 
-        if(this.history.length > 160)
+        if(this.history.length > this.historySize)
           this.history.shift();
       }
 
