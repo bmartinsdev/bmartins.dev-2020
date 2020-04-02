@@ -24,6 +24,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.destroyCanvas();
   }
 
+  public mouseHoverToggle = (state) => {
+    this.p5.setHoveredState(state);
+  }
+
   private onWindowResize = (e) => {
     this.p5.resizeCanvas(this.p5.windowWidth, this.p5.windowHeight);
   }
@@ -41,7 +45,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     let dumbNanites = [];
     let dumbOrbit = {x:0,y:0};
     let dumbSpeed = 0.4;
-    let r = 140;
+    let dumbInc = 0.14;
+    let rx = 14;
+    let ry = 14;
     let theta = 0.4;
     let followTimer = 0;
     let followMouse = false;
@@ -49,6 +55,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     let wWidth = p.windowWidth;
     let wHeight = p.windowHeight;
     let orbits = [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];
+
     p.setup = () => {
       p.createCanvas(wWidth, wHeight).parent('lg-home-flow');
       p.frameRate(24);
@@ -67,16 +74,18 @@ export class HomeComponent implements OnInit, OnDestroy {
       let followX = wWidth/2;
       let followY = wHeight/2;
       p.background(255);
-      dumbOrbit.x = p.mouseX + 14 * Math.cos(dumbSpeed+30);
-      dumbOrbit.y = p.mouseY + 14 * Math.sin(dumbSpeed+30);
-      //p.ellipse(dumbOrbit.x, dumbOrbit.y, 5, 5);
+      
+      dumbOrbit.x = p.mouseX + rx * Math.cos(dumbSpeed+30);
+      dumbOrbit.y = p.mouseY + ry * Math.sin(dumbSpeed+30);
+      // p.stroke(100);
+      // p.ellipse(dumbOrbit.x, dumbOrbit.y, 5, 5);
       for(let i=0; i < orbits.length; i++){
-        orbits[i].x = wWidth/2 + r * Math.cos(theta+inc);
-        orbits[i].y = wHeight/2 + r * Math.sin(theta+inc);
+        orbits[i].x = wWidth/2 + 140 * Math.cos(theta+inc);
+        orbits[i].y = wHeight/2 + 140 * Math.sin(theta+inc);
         //p.ellipse(orbits[i].x, orbits[i].y, 5, 5);
         inc = inc+10;
       }
-      dumbSpeed += 0.14;
+      dumbSpeed += dumbInc;
       theta += theta_vel;
 
       for(let i=0; i < nanites.length; i++){
@@ -91,8 +100,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         followTimer--;
         if(followTimer == 0) followMouse = false;
       }else{
-        followTimer = followTimer+2;
-        if(followTimer == 600) followMouse = true;
+        followTimer = followTimer+4;
+        if(followTimer > 600) followMouse = true;
       }
 
       for(let i=0; i < dumbNanites.length; i++){
@@ -100,9 +109,21 @@ export class HomeComponent implements OnInit, OnDestroy {
         dumbNanites[i].show();
       }
       p.stroke(255);
-      p.ellipse(wWidth/2, wHeight/2, r*2-1, r*2-1);
+      p.ellipse(wWidth/2, wHeight/2, 140*2-1, 140*2-1);
     };
 
+    p.setHoveredState = (state) => {
+      if(state){
+        rx = 100;
+        ry = 30;
+        dumbInc = 0.04;
+      }else{
+        rx = 14;
+        ry = 14;
+        dumbInc = 0.14;
+      }
+    }
+    
     function generateRandom(size) {
       return Math.floor(Math.random() * size);
     }
@@ -149,7 +170,5 @@ export class HomeComponent implements OnInit, OnDestroy {
         p.endShape();
       };
     };
-
-    
   }
 }
