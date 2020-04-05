@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LgColumnComponent } from 'src/app/lg-kanban/lg-board/lg-column/lg-column.component';
+import { LgColumnComponent } from 'src/app/pages/kanban/lg-board/lg-column/lg-column.component';
 import { LgSection } from 'src/app/classes/lg-section';
 
 @Component({

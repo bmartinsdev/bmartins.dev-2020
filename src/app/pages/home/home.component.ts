@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as p5 from 'p5';
-import { isUndefined } from 'util';
-import { createOfflineCompileUrlResolver } from '@angular/compiler';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +26,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.p5.setHoveredState(state);
   }
 
+  public mouseHoverLogo = (state) => {
+    this.p5.setCenterHover(state);
+  }
+
   private onWindowResize = (e) => {
     this.p5.resizeCanvas(this.p5.windowWidth, this.p5.windowHeight);
   }
@@ -48,10 +50,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     let dumbInc = 0.14;
     let rx = 14;
     let ry = 14;
-    let theta = 0.4;
+    let orbitRadius = 140;
+    let orbitSpeed = 0.4;
     let followTimer = 0;
     let followMouse = false;
-    let theta_vel = 0.016;
+    let orbitInc = 0.016;
     let wWidth = p.windowWidth;
     let wHeight = p.windowHeight;
     let orbits = [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];
@@ -77,16 +80,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       
       dumbOrbit.x = p.mouseX + rx * Math.cos(dumbSpeed+30);
       dumbOrbit.y = p.mouseY + ry * Math.sin(dumbSpeed+30);
-      // p.stroke(100);
+      //p.stroke(100);
       // p.ellipse(dumbOrbit.x, dumbOrbit.y, 5, 5);
       for(let i=0; i < orbits.length; i++){
-        orbits[i].x = wWidth/2 + 140 * Math.cos(theta+inc);
-        orbits[i].y = wHeight/2 + 140 * Math.sin(theta+inc);
+        orbits[i].x = wWidth/2 + orbitRadius * Math.cos(orbitSpeed+inc);
+        orbits[i].y = wHeight/2 + orbitRadius * Math.sin(orbitSpeed+inc);
         //p.ellipse(orbits[i].x, orbits[i].y, 5, 5);
         inc = inc+10;
       }
       dumbSpeed += dumbInc;
-      theta += theta_vel;
+      orbitSpeed += orbitInc;
 
       for(let i=0; i < nanites.length; i++){
         nanites[i].update(orbits[follow].x, orbits[follow].y);
@@ -114,13 +117,21 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     p.setHoveredState = (state) => {
       if(state){
-        rx = 100;
+        rx = 80;
         ry = 30;
         dumbInc = 0.04;
       }else{
         rx = 14;
         ry = 14;
         dumbInc = 0.14;
+      }
+    }
+
+    p.setCenterHover = (state) => {
+      if(state){
+        orbitRadius = 145;
+      }else{
+        orbitRadius = 140;
       }
     }
     
@@ -164,7 +175,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         p.beginShape();
         for(let i = 1; i < this.history.length; i++){
           let opacity = i < 35 ? i: 35;
-          p.stroke(0,0,0,opacity);
+          p.stroke(50, 50, 50, opacity);
           p.line(this.history[i].x, this.history[i].y, this.history[i-1].x, this.history[i-1].y);
         }
         p.endShape();

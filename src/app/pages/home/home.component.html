@@ -1,0 +1,24 @@
+<div class="main-menu-holder">
+    <button routerLink="projects" 
+    (mouseenter)="mouseHoverToggle(true)" (mouseleave)="mouseHoverToggle(false)"
+    class="button">Projects</button>
+    <button routerLink="about" 
+    (mouseenter)="mouseHoverToggle(true)" (mouseleave)="mouseHoverToggle(false)"
+    class="button">About</button>
+    <button routerLink="todo" 
+    (mouseenter)="mouseHoverToggle(true)" (mouseleave)="mouseHoverToggle(false)"
+    class="button">Todo</button>
+</div>
+<div class="social-menu-holder">
+    <a href="https://twitter.com/LughAppDev" target="_blank"
+    (mouseenter)="mouseHoverToggle(true)" (mouseleave)="mouseHoverToggle(false)"
+    class="button">Twitter</a>
+    <a href="https://github.com/lughapp" target="_blank"
+    (mouseenter)="mouseHoverToggle(true)" (mouseleave)="mouseHoverToggle(false)"
+    class="button">GitHub</a>
+</div>
+<div class="logo-center"
+    (mouseenter)="mouseHoverLogo(true)" (mouseleave)="mouseHoverLogo(false)">
+    <img src="assets/logo.svg">
+</div>
+<div id="lg-home-flow"></div>

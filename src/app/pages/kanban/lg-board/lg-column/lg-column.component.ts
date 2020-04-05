@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LgKanbanService } from '../../../services/lg-kanban.service';
-import { LgTask } from '../../../classes/lg-task';
+import { LgKanbanService } from 'src/app/services/lg-kanban.service';
+import { LgTask } from 'src/app/classes/lg-task';
 import { Observable } from 'rxjs';
 import { LgSection } from 'src/app/classes/lg-section';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';

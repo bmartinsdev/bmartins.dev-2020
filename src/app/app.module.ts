@@ -7,19 +7,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { environment } from '../environments/environment';
+import { environment } from 'src/environments/environment';
 
-import { LgKanbanComponent } from './lg-kanban/lg-kanban.component';
-import { LgBoardComponent } from './lg-kanban/lg-board/lg-board.component';
-import { LgColumnComponent } from './lg-kanban/lg-board/lg-column/lg-column.component';
-import { LgCardComponent } from './lg-kanban/lg-board/lg-column/lg-card/lg-card.component';
+import { LgKanbanComponent } from 'src/app/pages/kanban/lg-kanban.component';
+import { LgBoardComponent } from 'src/app/pages/kanban/lg-board/lg-board.component';
+import { LgColumnComponent } from 'src/app/pages/kanban/lg-board/lg-column/lg-column.component';
+import { LgCardComponent } from 'src/app/pages/kanban/lg-board/lg-column/lg-card/lg-card.component';
 
 import { LgKanbanService } from './services/lg-kanban.service';
-import { LgTaskFormComponent } from './lg-kanban/lg-board/lg-column/lg-task-form/lg-task-form.component';
-import { HomeComponent } from './home/home.component';
+import { LgTaskFormComponent } from 'src/app/pages/kanban/lg-board/lg-column/lg-task-form/lg-task-form.component';
+import { HomeComponent } from 'src/app/pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,11 @@ import { HomeComponent } from './home/home.component';
     DragDropModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatSidenavModule,
+    MatListModule,
+    FlexLayoutModule
   ],
   providers: [
     LgKanbanService
