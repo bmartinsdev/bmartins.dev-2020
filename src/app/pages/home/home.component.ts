@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       let inc = 30;
       let followX = wWidth/2;
       let followY = wHeight/2;
-      p.background(255);
+      p.background(254);
       
       dumbOrbit.x = p.mouseX + rx * Math.cos(dumbSpeed+30);
       dumbOrbit.y = p.mouseY + ry * Math.sin(dumbSpeed+30);
@@ -103,8 +103,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         followTimer--;
         if(followTimer == 0) followMouse = false;
       }else{
-        followTimer = followTimer+4;
-        if(followTimer > 600) followMouse = true;
+        followTimer = followTimer+8;
+        if(followTimer > 800) followMouse = true;
       }
 
       for(let i=0; i < dumbNanites.length; i++){
