@@ -1,15 +1,16 @@
 @import 'src/styles/variables.sass'
 
 #lg-home-flow
-    .p5Canvas
+    height: 100vh
+    overflow: hidden
+    canvas
         display: block
-        width: 100vw
-        height: 100vh
+        width: 100%
 .full-screen-overlay
     position: absolute
     top: 0
     height: 100vh
-    width: 100vw
+    width: 100%
     z-index: 100
 .main-menu-holder
     position: absolute
@@ -35,7 +36,8 @@
     position: absolute
     top: 50vh
     left: 50vw
-    width: 4rem
+    width: 64px
+    height: 34px
     transform: translate(-50%, -50%)
     img
         width: 100%

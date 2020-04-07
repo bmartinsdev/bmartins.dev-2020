@@ -77,7 +77,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       let followX = wWidth/2;
       let followY = wHeight/2;
       p.background(254);
-      
       dumbOrbit.x = p.mouseX + rx * Math.cos(dumbSpeed+30);
       dumbOrbit.y = p.mouseY + ry * Math.sin(dumbSpeed+30);
       //p.stroke(100);
@@ -112,7 +111,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         dumbNanites[i].show();
       }
       p.stroke(255);
-      p.ellipse(wWidth/2, wHeight/2, 140*2-1, 140*2-1);
+      p.ellipse(wWidth/2, wHeight/2, 139*2-1, 139*2-1);
+      p.stroke(200);
+      p.ellipse(wWidth/2, wHeight/2, 5, 5);
     };
 
     p.setHoveredState = (state) => {
@@ -129,7 +130,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     p.setCenterHover = (state) => {
       if(state){
-        orbitRadius = 145;
+        orbitRadius = 143;
       }else{
         orbitRadius = 140;
       }
@@ -175,7 +176,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         p.beginShape();
         for(let i = 1; i < this.history.length; i++){
           let opacity = i < 35 ? i: 35;
-          p.stroke(50, 50, 50, opacity);
+          p.stroke(100, 100, 100, opacity);
           p.line(this.history[i].x, this.history[i].y, this.history[i-1].x, this.history[i-1].y);
         }
         p.endShape();
