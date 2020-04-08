@@ -1,0 +1,25 @@
+$fast: all 0.1s ease-in-out
+$slow: all 0.3s ease-in-out
+
+.hover-underline
+    transition: $fast
+    position: relative
+    &:before,
+    &:after
+        content: ""
+        position: absolute
+        bottom: 8px
+        width: 0px
+        height: 2px
+        margin: 5px 0 0
+        transition: $fast
+        transition-duration: 0.30s
+        opacity: 0
+        left: 0
+        background-color: $mono-dark
+    &:hover 
+        cursor: pointer
+        &:before,
+        &:after 
+            width: 100%
+            opacity: 1

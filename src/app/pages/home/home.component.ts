@@ -26,10 +26,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.p5.setHoveredState(state);
   }
 
-  public mouseHoverLogo = (state) => {
-    this.p5.setCenterHover(state);
-  }
-
   private onWindowResize = (e) => {
     this.p5.resizeCanvas(this.p5.windowWidth, this.p5.windowHeight);
   }
@@ -112,8 +108,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
       p.stroke(255);
       p.ellipse(wWidth/2, wHeight/2, 139*2-1, 139*2-1);
-      p.stroke(200);
-      p.ellipse(wWidth/2, wHeight/2, 5, 5);
     };
 
     p.setHoveredState = (state) => {
@@ -121,17 +115,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         rx = 80;
         ry = 30;
         dumbInc = 0.04;
+        orbitRadius = 143;
       }else{
         rx = 14;
         ry = 14;
         dumbInc = 0.14;
-      }
-    }
-
-    p.setCenterHover = (state) => {
-      if(state){
-        orbitRadius = 143;
-      }else{
         orbitRadius = 140;
       }
     }
