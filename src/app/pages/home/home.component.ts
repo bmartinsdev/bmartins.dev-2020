@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     let ry = 14;
     let orbitRadius = 140;
     let orbitSpeed = 0.4;
-    let followTimer = 0;
+    let followTimer = 200;
     let followMouse = false;
     let orbitInc = 0.016;
     let wWidth = p.windowWidth;
@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         nanites[i] = new Nanite(generateRandom(wWidth), generateRandom(wHeight), 4, 160);
       }
       for (var i = 0; i < 5; i++) {
-        dumbNanites[i] = new Nanite(generateRandom(wWidth), generateRandom(wHeight), 3+i/6, 40);
+        dumbNanites[i] = new Nanite(generateRandom(wWidth), generateRandom(wHeight), 3+i/6, 200);
       }
     };
     p.draw = () => {
@@ -98,8 +98,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         followTimer--;
         if(followTimer == 0) followMouse = false;
       }else{
-        followTimer = followTimer+8;
-        if(followTimer > 800) followMouse = true;
+        followTimer = followTimer + 1;
+        if(followTimer > 400) followMouse = true;
       }
 
       for(let i=0; i < dumbNanites.length; i++){

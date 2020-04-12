@@ -1,10 +1,12 @@
-<h3>{{section.title}}</h3> 
-<div *ngIf="loadedTasks; else loading"
-cdkDropList
-[cdkDropListData]="section"
-(cdkDropListDropped)="drop($event)"
-class="lg-kanban-list">
-    <app-lg-card *ngFor="let task of section.tasks" [task]="task" [cdkDragData]="task" cdkDrag></app-lg-card>
+<h4 class="lg-section-title">{{section.title}}</h4> 
+<div class="lg-column">
+    <div *ngIf="loadedTasks; else loading"
+    cdkDropList
+    [cdkDropListData]="section"
+    (cdkDropListDropped)="drop($event)"
+    class="lg-kanban-list">
+        <app-lg-card *ngFor="let task of section.tasks" [task]="task" [cdkDragData]="task" cdkDrag></app-lg-card>
+    </div>
     <app-lg-task-form *ngIf="section.id === '0gYBqxRhibDWfhhkxHlW'" [sectionId]="section.id" [mode]="'simple'"></app-lg-task-form>
 </div>
 <ng-template #loading>
