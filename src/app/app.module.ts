@@ -21,8 +21,8 @@ import { LgCardComponent } from 'src/app/pages/kanban/lg-board/lg-column/lg-card
 import { LgKanbanService } from './services/lg-kanban.service';
 import { LgTaskFormComponent } from 'src/app/pages/kanban/lg-board/lg-column/lg-task-form/lg-task-form.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
-import { AboutComponent } from './pages/about/about.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +33,8 @@ import { ProjectsComponent } from './pages/projects/projects.component';
     LgCardComponent,
     LgTaskFormComponent,
     HomeComponent,
-    AboutComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

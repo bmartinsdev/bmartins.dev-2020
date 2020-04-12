@@ -2,9 +2,12 @@
 @import 'src/styles/variables.sass'
 @import 'src/styles/animations.sass'
 
-body
+*
     margin: 0
+    padding: 0
+body
     font-family: $content-font
+    background-color: $bg-white
 h1, h2, h3, h4, h5
     font-family: $title-font
 a
@@ -17,10 +20,18 @@ button
     cursor: pointer
 .lg-sidebar
     height: 100vh
-    height: 100%
     position: fixed
     width: 70%
     margin-left: -70%
 .lg-container
     width: 100vw
-    width: 100%
+.fullscreen-holder
+    width: 100vw
+    height: 100vh
+    display: flex
+    align-items: center
+    justify-content: center
+    .comming-soon
+        text-align: center
+        h2
+            margin: 0.4rem

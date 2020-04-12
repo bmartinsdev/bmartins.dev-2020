@@ -8,10 +8,10 @@ $slow: all 0.3s ease-in-out
     &:after
         content: ""
         position: absolute
-        bottom: 8px
+        bottom: 0.4rem
         width: 0px
-        height: 2px
-        margin: 5px 0 0
+        height: 0.2rem
+        margin: 0.2rem 0 0
         transition: $fast
         transition-duration: 0.30s
         opacity: 0
@@ -23,3 +23,8 @@ $slow: all 0.3s ease-in-out
         &:after 
             width: 100%
             opacity: 1
+
+
+.fade-in-left
+    transition: $fast
+    position: relative
