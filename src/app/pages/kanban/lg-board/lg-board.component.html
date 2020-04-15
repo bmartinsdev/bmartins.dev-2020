@@ -1,1 +1,6 @@
-<app-lg-column *ngFor="let section of sections" [section]="section" [ngClass]="section.title"></app-lg-column>
+<div class="lg-backlog">
+    <app-lg-column [section]="backlog"></app-lg-column>
+</div>
+<div class="lg-board">
+    <app-lg-column *ngFor="let section of sections" [section]="section" [ngClass]="section.title"></app-lg-column>
+</div>

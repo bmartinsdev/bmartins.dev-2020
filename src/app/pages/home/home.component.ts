@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       let inc = 30;
       let followX = wWidth/2;
       let followY = wHeight/2;
-      p.background(254);
+      p.clear();
       dumbOrbit.x = p.mouseX + rx * Math.cos(dumbSpeed+30);
       dumbOrbit.y = p.mouseY + ry * Math.sin(dumbSpeed+30);
       //p.stroke(100);

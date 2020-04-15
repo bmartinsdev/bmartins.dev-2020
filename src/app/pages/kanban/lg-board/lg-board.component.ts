@@ -9,9 +9,11 @@ import { LgSection } from 'src/app/classes/lg-section';
 })
 export class LgBoardComponent implements OnInit {
   @Input() sections: LgSection[];
+  backlog: LgSection;
   constructor() { }
 
   ngOnInit(): void {
+    this.backlog = this.sections.shift();
   }
 
 }
