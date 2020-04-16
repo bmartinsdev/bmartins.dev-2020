@@ -1,3 +1,5 @@
+@import 'src/styles/variables.sass'
+
 $fast: all 0.1s ease-in-out
 $slow: all 0.3s ease-in-out
 
@@ -24,7 +26,10 @@ $slow: all 0.3s ease-in-out
             width: 100%
             opacity: 1
 
-
 .fade-in-left
     transition: $fast
     position: relative
+
+@mixin transition-all
+    -webkit-transition: all 0.5s ease-in-out
+    transition: all 0.5s ease-in-out

@@ -27,7 +27,7 @@ export class LgColumnComponent implements OnInit {
         this.loadedTasks = true;
       },
       err => console.error('Observer got an error: ' + err)
-    );;
+    );
   }
 
   updateTask(task:LgTask){

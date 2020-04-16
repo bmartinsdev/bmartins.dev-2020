@@ -10,10 +10,18 @@ import { LgSection } from 'src/app/classes/lg-section';
 export class LgBoardComponent implements OnInit {
   @Input() sections: LgSection[];
   backlog: LgSection;
-  constructor() { }
+  backlogToggle: boolean;
+
+  constructor() { 
+    this.backlogToggle = false;
+  }
 
   ngOnInit(): void {
     this.backlog = this.sections.shift();
+  }
+
+  toggleBacklog = function(){
+    this.backlogToggle = !this.backlogToggle;
   }
 
 }
