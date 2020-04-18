@@ -13,7 +13,6 @@ export class LgTask {
     comments: LgComment[];
 
     constructor(task: any = {}) {
-        console.log(task);
         this.id = task.id;
         this.title = task.title || '';
         this.section = task.section;

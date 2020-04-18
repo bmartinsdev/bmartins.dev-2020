@@ -1,6 +1,6 @@
-<div class="lg-sidebar">
+<div class="lg-sidebar" [ngClass]="{'open': menuToggle}">
     menu
 </div>
-<div class="lg-container">
+<div class="lg-container" [ngClass]="{'open': menuToggle}">
     <router-outlet></router-outlet>
 </div>

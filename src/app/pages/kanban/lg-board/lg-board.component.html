@@ -4,6 +4,8 @@
 </div>
 <div class="lg-board-holder" [ngClass]="{'open': backlogToggle}">
     <div class="lg-nav-bar">
+        <!-- menu directive -->
+        <button (click)="toggleMenu()">menu</button>
         <button (click)="toggleBacklog()">toggle</button>
     </div>
     <div class="lg-board">

@@ -28,7 +28,17 @@ canvas
     width: 70%
     margin-left: -70%
 .lg-container
+    @include transition-all
     width: 100%
+    left: 0
+    &.open
+        left: 80%
+.lg-sidebar
+    @include transition-all
+    width: 80%
+    left: -80%
+    &.open
+        left: 0
 .full-screen-overlay
     height: 100vh
     width: 100%
