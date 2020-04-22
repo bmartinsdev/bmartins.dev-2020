@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LgSection } from 'src/app/classes/lg-section';
+import { GlobalService } from 'src/app/services/global.service';
 @Component({
   selector: 'app-lg-board',
   templateUrl: './lg-board.component.html',
@@ -8,11 +9,9 @@ import { LgSection } from 'src/app/classes/lg-section';
 export class LgBoardComponent implements OnInit {
   @Input() sections: LgSection[];
   backlog: LgSection;
-  backlogToggle: boolean;
+  backlogToggle: boolean = false;
 
-  constructor() { 
-    this.backlogToggle = false;
-  }
+  constructor(private global: GlobalService){}
 
   ngOnInit(): void {
     this.backlog = this.sections.shift();
@@ -23,7 +22,7 @@ export class LgBoardComponent implements OnInit {
   }
 
   toggleMenu = function(){
-    this.global.toggleVariable();
+    this.global.toggleMenu();
   }
 
 }

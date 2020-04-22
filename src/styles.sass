@@ -6,43 +6,55 @@
     margin: 0
     padding: 0
     box-sizing: border-box
+
 html
     font-family: $content-font
     background-color: $bg-white
+
 h1, h2, h3, h4, h5
     font-family: $title-font
+
 a
     text-decoration: none
     color: $mono-dark
+
 button
     padding: 10px 20px
     background: none
     border: none
     cursor: pointer
+
 canvas
     display: block
     height: 100vh
-.lg-sidebar
-    height: 100vh
-    position: fixed
-    width: 70%
-    margin-left: -70%
+
 .lg-container
     @include transition-all
     width: 100%
     left: 0
     &.open
-        left: 80%
+        margin-left: 400px
+        @media(max-width: $sm)
+            margin-left: 80%
+
 .lg-sidebar
     @include transition-all
-    width: 80%
-    left: -80%
+    height: 100vh
+    position: fixed
+    width: 400px
+    left: -400px
+    background-color: #fff
+    @media(max-width: $sm)
+        width: 80%
+        left: 80%
     &.open
         left: 0
+
 .full-screen-overlay
     height: 100vh
     width: 100%
     z-index: 100
+
 .fullscreen-holder
     width: 100%
     height: 100vh
