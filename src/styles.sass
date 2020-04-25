@@ -28,27 +28,29 @@ canvas
     display: block
     height: 100vh
 
-.lg-container
-    @include transition-all
-    width: 100%
-    left: 0
-    &.open
-        margin-left: 400px
-        @media(max-width: $sm)
-            margin-left: 80%
-
-.lg-sidebar
+sidebar
     @include transition-all
     height: 100vh
     position: fixed
-    width: 400px
-    left: -400px
-    background-color: #fff
+    width: 300px
+    left: -300px
+    background-color: $mono-dark
+    flex-direction: column
+    display: flex
+    justify-content: space-between
     @media(max-width: $sm)
         width: 80%
         left: 80%
     &.open
         left: 0
+.lg-container
+    @include transition-all
+    width: 100%
+    left: 0
+    &.open
+        margin-left: 300px
+        @media(max-width: $sm)
+            margin-left: 80%
 
 .full-screen-overlay
     height: 100vh

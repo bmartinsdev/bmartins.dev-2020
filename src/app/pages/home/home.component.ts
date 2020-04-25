@@ -75,12 +75,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       p.clear();
       dumbOrbit.x = p.mouseX + rx * Math.cos(dumbSpeed+30);
       dumbOrbit.y = p.mouseY + ry * Math.sin(dumbSpeed+30);
-      //p.stroke(100);
-      // p.ellipse(dumbOrbit.x, dumbOrbit.y, 5, 5);
       for(let i=0; i < orbits.length; i++){
         orbits[i].x = wWidth/2 + orbitRadius * Math.cos(orbitSpeed+inc);
         orbits[i].y = wHeight/2 + orbitRadius * Math.sin(orbitSpeed+inc);
-        //p.ellipse(orbits[i].x, orbits[i].y, 5, 5);
         inc = inc+10;
       }
       dumbSpeed += dumbInc;
@@ -106,7 +103,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         dumbNanites[i].update(followX, followY);
         dumbNanites[i].show();
       }
-      p.stroke(255);
+      p.stroke('#fafafa');
+      p.fill('#fafafa');
       p.ellipse(wWidth/2, wHeight/2, 139*2-1, 139*2-1);
     };
 

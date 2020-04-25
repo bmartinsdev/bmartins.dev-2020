@@ -6,8 +6,7 @@ import { LgSection } from 'src/app/classes/lg-section';
 
 @Component({
   selector: 'app-lg-kanban',
-  templateUrl: './lg-kanban.component.html',
-  styleUrls: ['./lg-kanban.component.sass']
+  templateUrl: './lg-kanban.component.html'
 })
 export class LgKanbanComponent implements OnInit {
   sections$: Observable<LgSection[]>;

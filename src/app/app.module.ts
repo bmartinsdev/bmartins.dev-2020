@@ -23,6 +23,9 @@ import { LgTaskFormComponent } from 'src/app/pages/kanban/lg-board/lg-column/lg-
 import { HomeComponent } from 'src/app/pages/home/home.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { AboutComponent } from './pages/about/about.component';
+import { MenuToggleComponent } from './shared/menu-toggle/menu-toggle.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { ActionBarComponent } from './pages/kanban/action-bar/action-bar.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { AboutComponent } from './pages/about/about.component';
     LgTaskFormComponent,
     HomeComponent,
     ProjectsComponent,
-    AboutComponent
+    AboutComponent,
+    MenuToggleComponent,
+    SidebarComponent,
+    ActionBarComponent
   ],
   imports: [
     BrowserModule,

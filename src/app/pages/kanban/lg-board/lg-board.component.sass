@@ -14,7 +14,7 @@ app-lg-column
         display: flex
         height: calc(100% - 40px)
         width: 100%
-        padding: 1rem 0.5rem 0.5rem 0 
+        padding: 0 0.5rem
         overflow: scroll
     .lg-nav-bar
         height: 40px
@@ -32,3 +32,7 @@ app-lg-column
     overflow: scroll
     &.open
         top: 0px
+.lg-nav-bar
+    @include transition-all
+    display: flex
+    justify-content: space-between

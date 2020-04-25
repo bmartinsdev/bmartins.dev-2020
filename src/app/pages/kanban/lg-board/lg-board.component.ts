@@ -11,7 +11,7 @@ export class LgBoardComponent implements OnInit {
   backlog: LgSection;
   backlogToggle: boolean = false;
 
-  constructor(private global: GlobalService){}
+  constructor(){}
 
   ngOnInit(): void {
     this.backlog = this.sections.shift();
@@ -19,10 +19,6 @@ export class LgBoardComponent implements OnInit {
 
   toggleBacklog = function(){
     this.backlogToggle = !this.backlogToggle;
-  }
-
-  toggleMenu = function(){
-    this.global.toggleMenu();
   }
 
 }
