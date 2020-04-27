@@ -18,7 +18,7 @@ export class LgKanbanService {
 
   //#region SectionsCrud
   getSections(){
-    this.sectionsCollection = this.db.collection<LgSection>('sections', ref => ref.orderBy('position'));
+    this.sectionsCollection = this.db.collection<LgSection>('sections', ref => ref.orderBy('position', 'desc'));
     return this.sectionsCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data();

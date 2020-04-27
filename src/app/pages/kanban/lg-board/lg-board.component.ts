@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LgSection } from 'src/app/classes/lg-section';
-import { GlobalService } from 'src/app/services/global.service';
+
 @Component({
   selector: 'app-lg-board',
   templateUrl: './lg-board.component.html',
@@ -11,10 +11,14 @@ export class LgBoardComponent implements OnInit {
   backlog: LgSection;
   backlogToggle: boolean = false;
 
-  constructor(){}
+  constructor(){
+  }
 
   ngOnInit(): void {
-    this.backlog = this.sections.shift();
+    this.backlog = new LgSection({'id': 'backlog', 'title': 'Backlog'});
+    this.sections.unshift(new LgSection({'id': 'doing', 'title': 'Doing'}));
+    this.sections.unshift(new LgSection({'id': 'testing', 'title': 'Testing'}));
+    this.sections.unshift(new LgSection({'id': 'ready', 'title': 'Ready'}));
   }
 
   toggleBacklog = function(){
