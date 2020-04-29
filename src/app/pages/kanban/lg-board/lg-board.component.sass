@@ -18,6 +18,8 @@ app-lg-column
         overflow: scroll
     .lg-nav-bar
         height: 40px
+        @include transition-all
+        display: flex
     &.open
         top: 400px
 .lg-backlog
@@ -32,7 +34,3 @@ app-lg-column
     overflow: scroll
     &.open
         top: 0px
-.lg-nav-bar
-    @include transition-all
-    display: flex
-    justify-content: space-between

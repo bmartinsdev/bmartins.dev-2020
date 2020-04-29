@@ -4,9 +4,9 @@
 </div>
 <div class="lg-board-holder" [ngClass]="{'open': backlogToggle}">
     <div class="lg-nav-bar">
-        <menu-toggle></menu-toggle>
-        <button (click)="toggleBacklog()">BACKLOG</button>
-        <action-bar></action-bar>
+        <menu-toggle class="flex"></menu-toggle>
+        <button class="flex" (click)="toggleBacklog()">BACKLOG</button>
+        <action-bar class="flex"></action-bar>
     </div>
     <div class="lg-board">
         <app-lg-column *ngFor="let section of sections" [section]="section" [ngClass]="section.title"></app-lg-column>

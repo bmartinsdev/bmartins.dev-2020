@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LgSection } from 'src/app/classes/lg-section';
+import { MenuToggleComponent } from 'src/app/shared/menu-toggle/menu-toggle.component';
 
 @Component({
   selector: 'app-lg-board',

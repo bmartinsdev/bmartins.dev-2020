@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LgKanbanComponent } from 'src/app/pages/kanban/lg-kanban.component';
-import { HomeComponent } from 'src/app/pages/home/home.component';
-import { ProjectsComponent } from './pages/projects/projects.component';
-import { AboutComponent } from './pages/about/about.component';
+import { HomeModule } from './modules/home.module';
+import { AboutModule } from './modules/about.module';
+import { KanbanModule } from './modules/kanban.module';
+import { ProjectsModule } from './modules/projects.module';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'projects', component: ProjectsComponent },
-  { path: 'todo', component: LgKanbanComponent }
+  { path: '', loadChildren: './modules/home.module#HomeModule' },
+  { path: 'about', loadChildren: './modules/about.module#AboutModule' },
+  { path: 'projects', loadChildren: './modules/projects.module#ProjectsModule' },
+  { path: 'todo', loadChildren: './modules/kanban.module#KanbanModule' }
 ];
 
 @NgModule({
