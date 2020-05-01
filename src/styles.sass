@@ -23,6 +23,8 @@ button
     background: none
     border: none
     cursor: pointer
+    &:focus
+        outline: none
 
 canvas
     display: block
@@ -68,5 +70,10 @@ sidebar
         h2
             margin: 0.4rem
 
-.flex
+.flex-child
     flex: 1
+
+.flex-center-center
+    display: flex
+    justify-content: center
+    align-items: center

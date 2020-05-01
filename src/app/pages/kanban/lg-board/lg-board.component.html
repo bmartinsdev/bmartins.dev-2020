@@ -4,11 +4,19 @@
 </div>
 <div class="lg-board-holder" [ngClass]="{'open': backlogToggle}">
     <div class="lg-nav-bar">
-        <menu-toggle class="flex"></menu-toggle>
-        <button class="flex" (click)="toggleBacklog()">BACKLOG</button>
-        <action-bar class="flex"></action-bar>
+        <menu-toggle class="flex-child"></menu-toggle>
+        <button class="flex-child flex-center-center" (click)="toggleBacklog()">
+            <i-feather *ngIf="backlogToggle; else switchChevron" name="chevron-down"></i-feather>
+            <span>BACKLOG</span> 
+            <i-feather *ngIf="backlogToggle; else switchChevron" name="chevron-down"></i-feather>
+        </button>
+        <action-bar class="flex-child"></action-bar>
     </div>
     <div class="lg-board">
         <app-lg-column *ngFor="let section of sections" [section]="section" [ngClass]="section.title"></app-lg-column>
     </div>
 </div>
+
+<ng-template #switchChevron>
+    <i-feather name="chevron-up"></i-feather>
+</ng-template>
