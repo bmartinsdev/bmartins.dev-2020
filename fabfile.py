@@ -21,7 +21,7 @@ def updateProduction():
     lugh.execute("test -f ~/lugh-website/public_html/index.html && rm -rf ~/public_html/* && mv ~/lugh-website/public_html/* ~/public_html/")
 
 def build(msg):
-    local('ng build --prod --output-path=../deploy/public_html && cd ../deploy && git add . && git commit -m "{}" && git push origin Deploy --force'.format(msg))
+    return local('ng build --prod --output-path=../deploy/public_html && cd ../deploy && git add . && git commit -m "{}" && git push origin Deploy --force'.format(msg))
 
 @task 
 def setup(context):
