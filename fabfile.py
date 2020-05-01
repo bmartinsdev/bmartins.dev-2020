@@ -14,7 +14,7 @@ lugh = Connection(
     )
 
 def commit(msg):
-    local('git add . && git commit -m "{}"'.format(msg))
+    local('git add . && git commit -m "{}" && git push'.format(msg))
 
 def updateProduction():
     lugh.execute("cd ~/lugh-website && git reset --hard origin/Deploy && git pull")
