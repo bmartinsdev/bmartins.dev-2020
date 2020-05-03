@@ -1,3 +1,6 @@
 <button (click)="toggleMenu()">
-    <i-feather name="menu"></i-feather>
+    <i-feather *ngIf="!menuToggle; else close" name="menu"></i-feather>
 </button>
+<ng-template #close>
+    <i-feather name="x"></i-feather>
+</ng-template>
