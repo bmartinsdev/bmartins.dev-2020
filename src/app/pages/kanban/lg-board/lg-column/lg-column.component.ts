@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LgKanbanService } from 'src/app/services/lg-kanban.service';
-import { LgTask } from 'src/app/classes/lg-task';
+import { LgKanbanService } from 'src/app/services/kanban/lg-kanban.service';
+import { LgTask } from 'src/app/services/kanban/classes/lg-task';
 import { Observable } from 'rxjs';
-import { LgSection } from 'src/app/classes/lg-section';
+import { LgSection } from 'src/app/services/kanban/classes/lg-section';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -17,25 +17,7 @@ export class LgColumnComponent implements OnInit {
   constructor(private taskDB: LgKanbanService) { }
 
   ngOnInit(): void {
-    this.loadTasks();
-  }
-
-  loadTasks(){
-    this.taskDB.getTasks(this.section.id).subscribe(
-      tasks => {
-        this.section.tasks = tasks;
-        this.loadedTasks = true;
-      },
-      err => console.error('Observer got an error: ' + err)
-    );
-  }
-
-  updateTask(task:LgTask){
-    this.taskDB.updateTask(task);
-  }
-  
-  deleteTask(task:LgTask){
-    this.taskDB.deleteTask(task);
+    //this.loadTasks();
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -53,6 +35,6 @@ export class LgColumnComponent implements OnInit {
     }else{
       task.position = task.generatePosition("new");
     }
-    this.updateTask(task);
+   // this.updateTask(task);
   }
 }

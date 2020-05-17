@@ -9,7 +9,7 @@ import { LgTaskFormComponent } from 'src/app/pages/kanban/lg-board/lg-column/lg-
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LgKanbanService } from 'src/app/services/lg-kanban.service';
+import { LgKanbanService } from 'src/app/services/kanban/lg-kanban.service';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './shared.module';
 

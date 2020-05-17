@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LgTask } from 'src/app/classes/lg-task';
+import { LgTask } from 'src/app/services/kanban/classes/lg-task';
 
 @Component({
   selector: 'app-lg-card',

@@ -4,13 +4,15 @@ import { HomeModule } from './modules/home.module';
 import { AboutModule } from './modules/about.module';
 import { KanbanModule } from './modules/kanban.module';
 import { ProjectsModule } from './modules/projects.module';
+import { TestingComponent } from './testing/testing.component';
 
 
 const routes: Routes = [
   { path: '', loadChildren: './modules/home.module#HomeModule' },
   { path: 'about', loadChildren: './modules/about.module#AboutModule' },
   { path: 'projects', loadChildren: './modules/projects.module#ProjectsModule' },
-  { path: 'todo', loadChildren: './modules/kanban.module#KanbanModule' }
+  { path: 'todo', loadChildren: './modules/kanban.module#KanbanModule' },
+  { path: 'test', component: TestingComponent }
 ];
 
 @NgModule({

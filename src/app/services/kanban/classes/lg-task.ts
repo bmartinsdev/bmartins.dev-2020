@@ -1,5 +1,3 @@
-import { LgComment } from './lg-comment';
-import { isUndefined } from 'util';
 
 export class LgTask {
     id: string;
@@ -10,7 +8,6 @@ export class LgTask {
     position: number;
     completion: number;
     date: Date;
-    comments: LgComment[];
 
     constructor(task: any = {}) {
         this.id = task.id;

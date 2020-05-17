@@ -7,9 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class GlobalService {
   private menuToggle = new BehaviorSubject<boolean>(false);
   menuState = this.menuToggle.asObservable();
-
-  constructor(){}
-
+  
   toggleMenu(){
     this.menuToggle.next(!this.menuToggle.value);
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LgSection } from 'src/app/classes/lg-section';
+import { LgSection } from 'src/app/services/kanban/classes/lg-section';
 import { MenuToggleComponent } from 'src/app/shared/menu-toggle/menu-toggle.component';
 
 @Component({
@@ -11,9 +11,6 @@ export class LgBoardComponent implements OnInit {
   @Input() sections: LgSection[];
   backlog: LgSection;
   backlogToggle: boolean = false;
-
-  constructor(){
-  }
 
   ngOnInit(): void {
     this.backlog = new LgSection({'id': 'backlog', 'title': 'Backlog'});
