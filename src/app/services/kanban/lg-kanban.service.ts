@@ -17,7 +17,7 @@ export class LgKanbanService {
 
   constructor(public db: AngularFirestore) {}
 
-  //#region SectionsCrud
+  //#region defaults
   getDefaultSections(){
     let defaultSections = this.db.doc('globals/defaultSections').valueChanges();
     
@@ -37,6 +37,33 @@ export class LgKanbanService {
     return this.sections;
   }
 
+  //#endregion defaults
+
+  //#region tasks
+
+  getPublicTasks(){
+
+  }
+
+  getPublicBacklogTasks(){
+
+  }
+
+  getPrivateTasks(){
+
+  }
+
+  getPrivateBacklogTasks(){
+
+  }
+
+  //#endregion tasks
+
+
+
+
+
+  
   // createSection(section:LgSection): Promise<DocumentReference> {
   //   this.sectionsCollection = this.db.collection<LgSection>('sections');
   //   return this.sectionsCollection.add(JSON.parse(JSON.stringify(section)));
