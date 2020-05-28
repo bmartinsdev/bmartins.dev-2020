@@ -42,7 +42,7 @@ export class LgKanbanService {
   //#region tasks
 
   getPublicTasks(){
-
+    //'TR/test/twv'
   }
 
   getPublicBacklogTasks(){
