@@ -9,11 +9,14 @@ import { LgKanbanService } from '../services/kanban/lg-kanban.service';
 })
 export class TestingComponent implements OnInit {
   sections: Observable<LgSection[]>;
+  tasks: Observable<LgSection[]>;
   constructor(private taskDB: LgKanbanService) { }
 
   ngOnInit(): void {
-    this.sections = this.taskDB.sections;
+    this.sections = this.taskDB.sections$;
     this.taskDB.getDefaultSections();
+    this.tasks = this.taskDB.tasks$;
+    this.taskDB.getAllTasks();
   }
 
 }

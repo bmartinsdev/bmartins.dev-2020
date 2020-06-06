@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFireFunctions } from '@angular/fire/functions';
 import { map } from 'rxjs/operators';
 import { LgSection } from '../kanban/classes/lg-section';
-import 'firebase/firestore';
 import { Observable, of, BehaviorSubject } from 'rxjs';
+
 interface KeyValuePair {
   key: string;
   value: string;
@@ -12,51 +13,49 @@ interface KeyValuePair {
   providedIn: 'root'
 })
 export class LgKanbanService {
+  private getTasksFunction;
   private sectionsBehavior = new BehaviorSubject<LgSection[]>([]);
-  sections = this.sectionsBehavior.asObservable();
+  sections$ = this.sectionsBehavior.asObservable();
+  private tasksBehavior = new BehaviorSubject<LgSection[]>([]);
+  tasks$ = this.tasksBehavior.asObservable();
 
-  constructor(public db: AngularFirestore) {}
+  constructor(public db: AngularFirestore, private fns: AngularFireFunctions) {
+    this.getTasksFunction = fns.httpsCallable('helloWorld');
+  }
 
   //#region defaults
   getDefaultSections(){
-    let defaultSections = this.db.doc('globals/defaultSections').valueChanges();
+    let defaultSections = this.db.doc('projects/defaultSections').valueChanges();
     
     defaultSections.subscribe({
       next: (sections) => {
-        this.sectionsBehavior.next(Object.entries(sections).map(
-          ([key, value]) => {
-            return new LgSection({
-                id: key,
-                content: value
-              });
-          })
-        )
+        if(sections){
+          this.sectionsBehavior.next(Object.entries(sections).map(
+            ([key, value]) => {
+              return new LgSection({
+                  id: key,
+                  content: value
+                });
+            })
+          )
+        }
       }
     });
 
-    return this.sections;
+    return this.sections$;
   }
 
   //#endregion defaults
 
   //#region tasks
 
-  getPublicTasks(){
-
+  getAllTasks(){
+    this.getTasksFunction().subscribe({
+      next: (tasks) => {
+        if(tasks) console.log(tasks);
+      }
+    });
   }
-
-  getPublicBacklogTasks(){
-
-  }
-
-  getPrivateTasks(){
-
-  }
-
-  getPrivateBacklogTasks(){
-
-  }
-
   //#endregion tasks
 
 
