@@ -2,13 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { map } from 'rxjs/operators';
-import { LgSection } from '../kanban/classes/lg-section';
+import { LgSection } from './classes/Section';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 
-interface KeyValuePair {
-  key: string;
-  value: string;
-}
 @Injectable({
   providedIn: 'root'
 })

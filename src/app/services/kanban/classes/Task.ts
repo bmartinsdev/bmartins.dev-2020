@@ -1,22 +1,28 @@
+export enum Impact {
+    Fix,
+    Improvement,
+    Major
+};
 
 export class LgTask {
     id: string;
-    title: string;
-    section: string;
-    separator: boolean;
+    name: string;
+    date: Date;
     description: string;
+    impact: Impact;
     position: number;
     completion: number;
-    date: Date;
+    project: Project;
+    section: string;
 
     constructor(task: any = {}) {
         this.id = task.id;
-        this.title = task.title || '';
-        this.section = task.section;
-        this.separator = task.separator || false;
-        this.description = task.description || '';
+        this.name = task.name;
+        this.impact = task.impact || Impact.Fix;
         this.position = task.position || this.generatePosition("new");
         this.completion = task.completion || 0;
+        this.project = task.project;
+
     }
 
     generatePosition(action?:string, between?:number) {
@@ -29,21 +35,12 @@ export class LgTask {
     }
 
     serialized() {
-        if(this.separator){
-            return {
-                "title": this.title,
-                "position": this.position,
-                "section": this.section,
-                "separator": this.separator
-            };
-        }
         return {
-            "title": this.title,
+            "name": this.name,
             "description": this.description,
             "position": this.position,
             "section": this.section,
-            "completion": this.completion,
-            "separator": this.separator
+            "completion": this.completion
         };
     }
 }

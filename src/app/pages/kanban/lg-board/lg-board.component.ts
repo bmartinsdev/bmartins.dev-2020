@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LgSection } from 'src/app/services/kanban/classes/lg-section';
+import { LgSection } from 'src/app/services/kanban/classes/Section';
 import { MenuToggleComponent } from 'src/app/shared/menu-toggle/menu-toggle.component';
 
 @Component({

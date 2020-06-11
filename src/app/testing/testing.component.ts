@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LgSection } from '../services/kanban/classes/lg-section';
+import { LgSection } from '../services/kanban/classes/Section';
 import { LgKanbanService } from '../services/kanban/lg-kanban.service';
 
 @Component({

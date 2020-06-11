@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LgBoardComponent } from 'src/app/pages/kanban/lg-board/lg-board.component';
 import { Observable } from 'rxjs';
 import { LgKanbanService } from 'src/app/services/kanban/lg-kanban.service';
-import { LgSection } from 'src/app/services/kanban/classes/lg-section';
+import { LgSection } from 'src/app/services/kanban/classes/Section';
 
 @Component({
   selector: 'app-lg-kanban',

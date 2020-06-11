@@ -1,4 +1,4 @@
-import { LgTask } from './lg-task';
+import { LgTask } from './Task';
 
 export class LgSection {
     id: string;

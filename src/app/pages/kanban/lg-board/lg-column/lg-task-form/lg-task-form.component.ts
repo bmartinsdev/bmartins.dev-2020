@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { LgTask } from 'src/app/services/kanban/classes/lg-task';
+import { LgTask } from 'src/app/services/kanban/classes/Task';
 import { LgKanbanService } from 'src/app/services/kanban/lg-kanban.service';
 
 @Component({
