@@ -3,11 +3,12 @@
   "scripts": {
     "lint": "tslint --project tsconfig.json",
     "build": "tsc",
-    "serve": "npm run build && firebase emulators:start --only functions && tsc --watch",
-    "shell": "export GOOGLE_APPLICATION_CREDENTIALS='../../applughwebsite-firebase-adminsdk-q3gn7-9e2ef9e1b7.json' && npm run build && firebase functions:shell",
-    "start": "npm run shell",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "export GOOGLE_APPLICATION_CREDENTIALS='../../applughwebsite-firebase-adminsdk-q3gn7-9e2ef9e1b7.json' && firebase functions:shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "watch": "tsc --watch",
+    "dev": "npm run serve & npm run watch"
   },
   "engines": {
     "node": "10"
