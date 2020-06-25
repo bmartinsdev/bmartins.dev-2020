@@ -1,14 +1,14 @@
 <menu-toggle></menu-toggle>
 <div class="main-menu-holder">
-    <a routerLink="projects" 
-    (mouseenter)="mouseHoverToggle(true)" (mouseleave)="mouseHoverToggle(false)"
-    class="button hover-underline">Projects</a>
     <a routerLink="about" 
     (mouseenter)="mouseHoverToggle(true)" (mouseleave)="mouseHoverToggle(false)"
     class="button hover-underline">About</a>
-    <a routerLink="todo" 
+    <a 
     (mouseenter)="mouseHoverToggle(true)" (mouseleave)="mouseHoverToggle(false)"
-    class="button hover-underline">Todo</a>
+    class="button disabled">Projects</a>
+    <a  
+    (mouseenter)="mouseHoverToggle(true)" (mouseleave)="mouseHoverToggle(false)"
+    class="button disabled">Todo</a>
 </div>
 <div class="social-menu-holder">
     <a href="https://twitter.com/LughAppDev" target="_blank"

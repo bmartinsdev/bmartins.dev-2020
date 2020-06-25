@@ -41,15 +41,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   private drawing = function (p: any) {
     let nanites = [];
     let dumbNanites = [];
-    let dumbOrbit = {x:0,y:0};
     let dumbSpeed = 0.4;
     let dumbInc = 0.14;
     let rx = 14;
     let ry = 14;
     let orbitRadius = 140;
     let orbitSpeed = 0.4;
-    let followTimer = 200;
-    let followMouse = false;
     let orbitInc = 0.016;
     let wWidth = p.windowWidth;
     let wHeight = p.windowHeight;
@@ -73,8 +70,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       let followX = wWidth/2;
       let followY = wHeight/2;
       p.clear();
-      dumbOrbit.x = p.mouseX + rx * Math.cos(dumbSpeed+30);
-      dumbOrbit.y = p.mouseY + ry * Math.sin(dumbSpeed+30);
+      followX = p.mouseX + rx * Math.cos(dumbSpeed+30);
+      followY = p.mouseY + ry * Math.sin(dumbSpeed+30);
       for(let i=0; i < orbits.length; i++){
         orbits[i].x = wWidth/2 + orbitRadius * Math.cos(orbitSpeed+inc);
         orbits[i].y = wHeight/2 + orbitRadius * Math.sin(orbitSpeed+inc);
@@ -88,15 +85,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         nanites[i].show();
         follow++;
         if(follow == 5) follow = 0;
-      }
-      if(followMouse){
-        followX = dumbOrbit.x;
-        followY = dumbOrbit.y;
-        followTimer--;
-        if(followTimer == 0) followMouse = false;
-      }else{
-        followTimer = followTimer + 1;
-        if(followTimer > 400) followMouse = true;
       }
 
       for(let i=0; i < dumbNanites.length; i++){

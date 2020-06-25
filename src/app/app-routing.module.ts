@@ -5,6 +5,7 @@ import { AboutModule } from './modules/about.module';
 import { KanbanModule } from './modules/kanban.module';
 import { ProjectsModule } from './modules/projects.module';
 import { TestingComponent } from './testing/testing.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,9 @@ const routes: Routes = [
   { path: 'about', loadChildren: './modules/about.module#AboutModule' },
   { path: 'projects', loadChildren: './modules/projects.module#ProjectsModule' },
   { path: 'todo', loadChildren: './modules/kanban.module#KanbanModule' },
-  { path: 'test', component: TestingComponent }
+  { path: 'test', component: TestingComponent },
+  { path: '404', component: PageNotFoundComponent },
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({
