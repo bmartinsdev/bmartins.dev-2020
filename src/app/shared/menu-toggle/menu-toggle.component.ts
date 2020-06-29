@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { GlobalService } from 'src/app/services/global.service';
 })
 export class MenuToggleComponent implements OnInit {
   menuToggle: boolean = true;
+  @HostBinding('class') menuState: string = 'open';
 
   constructor(private global: GlobalService) { }
 
@@ -17,6 +18,7 @@ export class MenuToggleComponent implements OnInit {
 
   toggleMenu = function(){
     this.global.toggleMenu();
+    this.menuState = this.menuToggle ? 'close' : 'open';
   }
 
 }
