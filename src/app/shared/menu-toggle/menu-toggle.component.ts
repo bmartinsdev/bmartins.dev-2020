@@ -13,12 +13,14 @@ export class MenuToggleComponent implements OnInit {
   constructor(private global: GlobalService) { }
 
   ngOnInit(): void {
-    this.global.menuState.subscribe(state => this.menuToggle = state);
+    this.global.menuState.subscribe(state => {
+      this.menuToggle = state;
+      this.menuState = this.menuToggle ? 'close' : 'open';
+    });
   }
 
   toggleMenu = function(){
     this.global.toggleMenu();
-    this.menuState = this.menuToggle ? 'close' : 'open';
   }
 
 }

@@ -29,3 +29,9 @@ $slow: 0.6s ease-in-out
 .fade-in-left
     transition: $fast
     position: relative
+
+@mixin hardwareAccelerated
+    -webkit-transform: translate2d(0, 0, 0)
+    -moz-transform: translate2d(0, 0, 0)
+    -ms-transform: translate2d(0, 0, 0)
+    transform: translate2d(0, 0, 0)

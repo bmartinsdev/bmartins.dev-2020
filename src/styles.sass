@@ -34,6 +34,7 @@ menu-toggle
     position: absolute
     z-index: 11
     transition: left $fast
+    @include hardwareAccelerated
     left: 0
     &.close
         left: 250px
@@ -43,6 +44,7 @@ menu-toggle
             left: calc(80% - 50px)
 sidebar
     transition: left $fast
+    @include hardwareAccelerated
     height: 100vh
     position: fixed
     width: 300px
@@ -59,6 +61,7 @@ sidebar
         left: 0
 .lg-container
     transition: left $fast
+    @include hardwareAccelerated
     width: 100%
     left: 0
     &.open
