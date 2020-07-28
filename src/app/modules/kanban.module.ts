@@ -5,7 +5,7 @@ import { LgKanbanComponent } from 'src/app/pages/kanban/lg-kanban.component';
 import { LgBoardComponent } from 'src/app/pages/kanban/lg-board/lg-board.component';
 import { LgColumnComponent } from 'src/app/pages/kanban/lg-board/lg-column/lg-column.component';
 import { LgCardComponent } from 'src/app/pages/kanban/lg-board/lg-column/lg-card/lg-card.component';
-import { LgTaskFormComponent } from 'src/app/pages/kanban/lg-board/lg-column/lg-task-form/lg-task-form.component';
+import { TaskFormComponent } from 'src/app/pages/kanban/lg-board/lg-column/lg-task-form/lg-task-form.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,7 +24,7 @@ const routes: Routes = [
     LgBoardComponent,
     LgColumnComponent,
     LgCardComponent,
-    LgTaskFormComponent  
+    TaskFormComponent  
   ],
   imports: [
     CommonModule,

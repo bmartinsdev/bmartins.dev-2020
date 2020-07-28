@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { map } from 'rxjs/operators';
-import { LgSection } from './classes/Section';
+import { Section } from './classes/Section';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -10,9 +10,9 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 })
 export class LgKanbanService {
   private getTasksFunction;
-  private sectionsBehavior = new BehaviorSubject<LgSection[]>([]);
+  private sectionsBehavior = new BehaviorSubject<Section[]>([]);
   sections$ = this.sectionsBehavior.asObservable();
-  private tasksBehavior = new BehaviorSubject<LgSection[]>([]);
+  private tasksBehavior = new BehaviorSubject<Section[]>([]);
   tasks$ = this.tasksBehavior.asObservable();
 
   constructor(public db: AngularFirestore, private fns: AngularFireFunctions) {
@@ -28,7 +28,7 @@ export class LgKanbanService {
         if(sections){
           this.sectionsBehavior.next(Object.entries(sections).map(
             ([key, value]) => {
-              return new LgSection({
+              return new Section({
                   id: key,
                   content: value
                 });
@@ -59,16 +59,16 @@ export class LgKanbanService {
 
 
   
-  // createSection(section:LgSection): Promise<DocumentReference> {
-  //   this.sectionsCollection = this.db.collection<LgSection>('sections');
+  // createSection(section:Section): Promise<DocumentReference> {
+  //   this.sectionsCollection = this.db.collection<Section>('sections');
   //   return this.sectionsCollection.add(JSON.parse(JSON.stringify(section)));
   // }
 
-  // updateSection(section:LgSection): Promise<void>{
+  // updateSection(section:Section): Promise<void>{
   //   return this.db.doc(`/sections/${section.id}`).update(section.serialized());
   // }
 
-  // deleteSection(section:LgSection){
+  // deleteSection(section:Section){
   //   return this.db.doc(`/sections/${section.id}`).delete();
   // }
   //#endregion

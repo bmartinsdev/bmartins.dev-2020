@@ -1,31 +1,23 @@
 export class Project {
     id: string;
-    name: string;
+    title: string;
     date: Date;
     description: string;
-    impact: Impact;
-    position: number;
-    completion: number;
-    project: Project;
-    section: string;
+    gallery: Array<string>;
+    tags: Array<string>;
+    previewUrl: string;
+    repoUrl: string;
+    hex: string;
 
-    constructor(task: any = {}) {
-        this.id = task.id;
-        this.name = task.name;
-        this.impact = task.impact || Impact.Fix;
-        this.position = task.position || this.generatePosition("new");
-        this.completion = task.completion || 0;
-        this.project = task.project;
-
-    }
-
-    serialized() {
-        return {
-            "name": this.name,
-            "description": this.description,
-            "position": this.position,
-            "section": this.section,
-            "completion": this.completion
-        };
+    constructor(id: string, project: any = {}) {
+        if(id) this.id = id;
+        if(project.title) this.title = project.title;
+        if(project.date) this.date = project.date;
+        if(project.description) this.description = project.description;
+        if(project.gallery) this.gallery = project.gallery;
+        if(project.tags) this.tags = project.tags;
+        if(project.previewUrl) this.previewUrl = project.previewUrl;
+        if(project.repoUrl) this.repoUrl = project.repoUrl;
+        if(project.hex) this.hex = project.hex;
     }
 }

@@ -4,7 +4,7 @@ export enum Impact {
     Major
 };
 
-export class LgTask {
+export class Task {
     id: string;
     name: string;
     date: Date;

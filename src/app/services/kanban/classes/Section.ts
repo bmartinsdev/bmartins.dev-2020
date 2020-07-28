@@ -1,10 +1,10 @@
-import { LgTask } from './Task';
+import { Task } from './Task';
 
-export class LgSection {
+export class Section {
     id: string;
     name: string;
     position: number;
-    tasks: LgTask[];
+    tasks: Task[];
 
     constructor(section: any = {}) {
         if(section.id) this.id = section.id;

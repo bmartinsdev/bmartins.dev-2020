@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LgSection } from 'src/app/services/kanban/classes/Section';
+import { Section } from 'src/app/services/kanban/classes/Section';
 import { MenuToggleComponent } from 'src/app/shared/menu-toggle/menu-toggle.component';
 
 @Component({
@@ -8,15 +8,15 @@ import { MenuToggleComponent } from 'src/app/shared/menu-toggle/menu-toggle.comp
   styleUrls: ['./lg-board.component.sass']
 })
 export class LgBoardComponent implements OnInit {
-  @Input() sections: LgSection[];
-  backlog: LgSection;
+  @Input() sections: Section[];
+  backlog: Section;
   backlogToggle: boolean = false;
 
   ngOnInit(): void {
-    this.backlog = new LgSection({'id': 'backlog', 'title': 'Backlog'});
-    this.sections.unshift(new LgSection({'id': 'doing', 'title': 'Doing'}));
-    this.sections.unshift(new LgSection({'id': 'testing', 'title': 'Testing'}));
-    this.sections.unshift(new LgSection({'id': 'ready', 'title': 'Ready'}));
+    this.backlog = new Section({'id': 'backlog', 'title': 'Backlog'});
+    this.sections.unshift(new Section({'id': 'doing', 'title': 'Doing'}));
+    this.sections.unshift(new Section({'id': 'testing', 'title': 'Testing'}));
+    this.sections.unshift(new Section({'id': 'ready', 'title': 'Ready'}));
   }
 
   toggleBacklog = function(){

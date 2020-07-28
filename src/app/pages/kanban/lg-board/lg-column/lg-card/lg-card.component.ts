@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LgTask } from 'src/app/services/kanban/classes/Task';
+import { Task } from 'src/app/services/kanban/classes/Task';
 
 @Component({
   selector: 'app-lg-card',
@@ -7,7 +7,7 @@ import { LgTask } from 'src/app/services/kanban/classes/Task';
   styleUrls: ['./lg-card.component.sass']
 })
 export class LgCardComponent implements OnInit {
-  @Input() task:LgTask;
+  @Input() task:Task;
   constructor() { }
 
   ngOnInit(): void {

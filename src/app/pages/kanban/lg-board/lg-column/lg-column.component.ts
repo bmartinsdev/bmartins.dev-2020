@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LgKanbanService } from 'src/app/services/kanban/lg-kanban.service';
-import { LgTask } from 'src/app/services/kanban/classes/Task';
+import { Task } from 'src/app/services/kanban/classes/Task';
 import { Observable } from 'rxjs';
-import { LgSection } from 'src/app/services/kanban/classes/Section';
+import { Section } from 'src/app/services/kanban/classes/Section';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -11,7 +11,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
   styleUrls: ['./lg-column.component.sass']
 })
 export class LgColumnComponent implements OnInit {
-  @Input() section: LgSection;
+  @Input() section: Section;
   loadedTasks: boolean = false;
 
   constructor(private taskDB: LgKanbanService) { }
@@ -21,8 +21,8 @@ export class LgColumnComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    let targetSection = Object.assign(new LgSection, event.container.data);
-    let task = Object.assign(new LgTask, event.item.data);
+    let targetSection = Object.assign(new Section, event.container.data);
+    let task = Object.assign(new Task, event.item.data);
     let tPosBefore = targetSection.tasks[event.currentIndex-1];
     let tPosAfter = targetSection.tasks[event.currentIndex];
     task.section = targetSection.id;

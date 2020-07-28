@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LgSection } from '../services/kanban/classes/Section';
+import { Section } from '../services/kanban/classes/Section';
 import { LgKanbanService } from '../services/kanban/lg-kanban.service';
 
 @Component({
@@ -8,8 +8,8 @@ import { LgKanbanService } from '../services/kanban/lg-kanban.service';
   templateUrl: './testing.component.html'
 })
 export class TestingComponent implements OnInit {
-  sections: Observable<LgSection[]>;
-  tasks: Observable<LgSection[]>;
+  sections: Observable<Section[]>;
+  tasks: Observable<Section[]>;
   constructor(private taskDB: LgKanbanService) { }
 
   ngOnInit(): void {
