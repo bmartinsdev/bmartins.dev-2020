@@ -35,20 +35,26 @@ menu-toggle
     z-index: 11
     transition: left $fast
     @include hardwareAccelerated
-    left: 0
+    left: 1.6rem
+    top: 1.6rem
+    i-feather
+        width: 1.8rem!important
+        height: 1.8rem!important
+    button
+        padding: 0!important
     &.close
-        left: 250px
-        button
-            color: $bg-white
+        left: 21.6rem
+        /*button
+            color: $bg-white*/
         @media(max-width: $xs)
-            left: calc(80% - 50px)
+            left: calc(80%)
 sidebar
     transition: left $fast
     @include hardwareAccelerated
     height: 100vh
     position: fixed
-    width: 300px
-    left: -300px
+    width: 20rem
+    left: -20rem
     background-color: $default-dark
     flex-direction: column
     display: flex
