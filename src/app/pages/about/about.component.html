@@ -1,10 +1,43 @@
 <menu-toggle></menu-toggle>
 <div class="fullscreen-holder">
-    <div class="about-text">
-        <h2>About</h2>
-        <p>Everything you see on this website I'm developing in my spare time, as a way to learn new skills and improve others.</p>
-        <p>Currently working in Portugal as a Software Engineer, I am a full stack developer with a passion for minimal design and efficient code. My daily job consists of developing new features for a multinational application.</p>
-        <p>To reach me please use my <a href="https://twitter.com/LughAppDev" target="_blank" class="button hover-underline">Twitter</a> or <a href="https://www.linkedin.com/in/brunorodrigues355/" target="_blank" class="button hover-underline">LinkedIn</a>.</p>
-        <a routerLink="" class="hover-underline return-link">return</a>
-    </div>
+  <div class="about-text">
+    <h2>About</h2>
+    <p>
+      Everything you see on this website I'm developing in my spare time, as a
+      way to learn new skills and improve others.
+    </p>
+    <p>
+      Currently working in Portugal as a Software Engineer, I am a full stack
+      developer with a passion for minimal design and efficient code. My daily
+      job consists of developing new features for a multinational application.
+    </p>
+    <p>
+      To reach me please use my
+      <a
+        (mouseenter)="mouseHoverToggle(true)"
+        (mouseleave)="mouseHoverToggle(false)"
+        href="https://twitter.com/LughAppDev"
+        target="_blank"
+        class="button hover-underline"
+        >Twitter</a
+      >
+      or
+      <a
+        (mouseenter)="mouseHoverToggle(true)"
+        (mouseleave)="mouseHoverToggle(false)"
+        href="https://www.linkedin.com/in/brunorodrigues355/"
+        target="_blank"
+        class="button hover-underline"
+        >LinkedIn</a
+      >.
+    </p>
+    <a
+      (mouseenter)="mouseHoverToggle(true)"
+      (mouseleave)="mouseHoverToggle(false)"
+      routerLink=""
+      class="hover-underline return-link"
+      >return</a
+    >
+  </div>
 </div>
+<circle-background [hover]="hovered"></circle-background>

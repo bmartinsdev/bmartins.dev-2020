@@ -1,21 +1,20 @@
 <menu-toggle></menu-toggle>
 <div class="main-menu-holder">
-    <a routerLink="about" 
-    (mouseenter)="mouseHoverToggle(true)" (mouseleave)="mouseHoverToggle(false)"
-    class="button hover-underline">About</a>
-    <a 
-    (mouseenter)="mouseHoverToggle(true)" (mouseleave)="mouseHoverToggle(false)"
-    class="button disabled">Projects</a>
-    <a  
-    (mouseenter)="mouseHoverToggle(true)" (mouseleave)="mouseHoverToggle(false)"
-    class="button disabled">Todo</a>
+  <a routerLink="about" class="button hover-underline">About</a>
+  <a class="button disabled">Projects</a>
+  <a class="button disabled">Todo</a>
 </div>
 <div class="social-menu-holder">
-    <a href="https://twitter.com/LughAppDev" target="_blank"
-    (mouseenter)="mouseHoverToggle(true)" (mouseleave)="mouseHoverToggle(false)"
-    class="button hover-underline">Twitter</a>
-    <a href="https://github.com/lughapp" target="_blank"
-    (mouseenter)="mouseHoverToggle(true)" (mouseleave)="mouseHoverToggle(false)"
-    class="button hover-underline">GitHub</a>
+  <a
+    href="https://twitter.com/LughAppDev"
+    target="_blank"
+    class="button hover-underline"
+    >Twitter</a
+  >
+  <a
+    href="https://github.com/lughapp"
+    target="_blank"
+    class="button hover-underline"
+    >GitHub</a
+  >
 </div>
-<circle-background [hover]="hovered"></circle-background>

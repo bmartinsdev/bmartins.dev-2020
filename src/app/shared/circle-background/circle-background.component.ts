@@ -14,7 +14,6 @@ export class CircleBackgroundComponent implements OnInit, OnDestroy {
 
   constructor() {
     window.onresize = this.onWindowResize;
-    console.log("construct");
   }
 
   ngOnInit() {
@@ -34,11 +33,10 @@ export class CircleBackgroundComponent implements OnInit, OnDestroy {
   };
 
   private destroyCanvas = () => {
-    this.p5.noCanvas();
+    this.p5.remove();
   };
 
   private drawing = function (p: any) {
-    console.log("drawing");
     let orbitInc = 0.016;
     let followInc = 0.14;
     let rx = 14;
