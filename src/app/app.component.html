@@ -1,4 +1,6 @@
 <sidebar [ngClass]="{'open': menuToggle}"></sidebar>
-<div class="lg-container" [ngClass]="{'open': menuToggle}">
+<menu-toggle></menu-toggle>
+<div class="lg-container">
+    <div class="lg-container-overlay" *ngIf="menuToggle"></div>
     <router-outlet></router-outlet>
 </div>

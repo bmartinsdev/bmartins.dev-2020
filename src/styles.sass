@@ -43,11 +43,8 @@ menu-toggle
     button
         padding: 0!important
     &.close
-        left: 21.6rem
-        /*button
-            color: $bg-white*/
-        @media(max-width: $xs)
-            left: calc(80%)
+        button
+            color: $bg-white
 sidebar
     transition: left $fast
     @include hardwareAccelerated
@@ -71,15 +68,13 @@ sidebar
     width: 100%
     height: 100vh
     left: 0
-    &.open
-        left: 300px
-        @media(max-width: $xs)
-            left: 80%
 
-.full-screen-overlay
+.lg-container-overlay
     height: 100vh
     width: 100%
     z-index: 10
+    position: fixed
+    background-color: #ffffff80;
 
 .fullscreen-holder
     width: 100%

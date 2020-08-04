@@ -6,12 +6,12 @@
 <ng-template #login>
     <a (click)="auth.googleSignin()">Google Sign in</a>
 </ng-template> -->
-<div class="main-menu-holder">
+<nav class="main-menu-holder">
     <a (click)="goToRoute('')" class="button hover-underline">Home</a>
     <a (click)="goToRoute('about')" class="button hover-underline">About</a>
     <a class="button disabled">Projects</a>
-</div>
-<div class="social-menu-holder">
+</nav>
+<nav class="social-menu-holder">
     <a href="https://twitter.com/LughAppDev" target="_blank" class="button hover-underline">Twitter</a>
     <a href="https://github.com/lughapp" target="_blank" class="button hover-underline">GitHub</a>
-</div>
+</nav>

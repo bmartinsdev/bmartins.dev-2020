@@ -4,7 +4,6 @@
 </div>
 <div class="lg-board-holder" [ngClass]="{'open': backlogToggle}">
     <div class="lg-nav-bar">
-        <menu-toggle class="flex-child"></menu-toggle>
         <button class="flex-child flex-center-center" (click)="toggleBacklog()">
             <i-feather *ngIf="backlogToggle; else switchChevron" name="chevron-down"></i-feather>
             <span>BACKLOG</span> 
