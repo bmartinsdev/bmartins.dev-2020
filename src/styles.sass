@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Work+Sans:wght@300;400&display=swap')
 @import 'src/styles/variables.sass'
 @import 'src/styles/animations.sass'
+@import 'src/styles/typography.sass'
+@import 'src/styles/layout.sass'
 
 *
     margin: 0
@@ -10,18 +12,6 @@
 html
     font-family: $content-font
     background-color: $bg-white
-
-h1, h2, h3, h4, h5
-    font-family: $title-font
-
-h2
-    font-size: 2.2rem
-    line-height: 2.6rem
-
-a
-    text-decoration: none
-    color: $default-dark
-    font-weight: 600
 
 button
     padding: 10px 20px
@@ -81,6 +71,18 @@ sidebar
     position: fixed
     background-color: #ffffff80;
 
+.fixed-container
+    width: 50rem
+    max-width: 100%
+    padding: 5rem 1.6rem
+    margin: 0 auto
+
+.full-container
+    width: 70rem
+    max-width: 100%
+    padding: 5rem 1.6rem
+    margin: 0 auto
+
 .fullscreen-holder
     width: 100%
     height: 100vh
@@ -91,34 +93,6 @@ sidebar
         text-align: center
         h2
             margin: 0.4rem
-
-.flex-child
-    flex: 1
-
-.flex-center-center
-    display: flex
-    justify-content: center
-    align-items: center
-
-.flex-center-start
-    display: flex
-    justify-content: center
-    align-items: flex-start
-
-.flex-start-center
-    display: flex
-    justify-content: flex-start
-    align-items: center
-
-.flex-center-end
-    display: flex
-    justify-content: center
-    align-items: flex-end
-
-.flex-start-end
-    display: flex
-    justify-content: flex-end
-    align-items: center
 
 .disabled
     color: $default-light!important

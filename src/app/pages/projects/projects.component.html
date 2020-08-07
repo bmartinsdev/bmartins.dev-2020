@@ -1,6 +1,8 @@
-<div class="fullscreen-holder">
-    <div class="comming-soon">
-        <h2>Coming Soon</h2>
-        <a routerLink="" class="hover-underline">return</a>
-    </div>
+<div class="full-container" *ngIf="projects$ | async as projects; else loading">
+  <lg-project *ngFor="let project of projects" [project]="project"></lg-project>
 </div>
+<ng-template #loading>
+  <div class="fullscreen-holder">
+    <h5>Loading...</h5>
+  </div>
+</ng-template>

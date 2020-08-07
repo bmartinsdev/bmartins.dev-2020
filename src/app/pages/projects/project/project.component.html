@@ -1,0 +1,45 @@
+<article class="project" id="{{ project.id }}">
+  <div class="gallery" *ngIf="project.gallery && project.gallery.length > 0">
+    <figure *ngFor="let item of project.gallery" class="image">
+      <img src="{{ item }}" />
+    </figure>
+  </div>
+  <aside>
+    <h3 class="title">{{ project.title }}</h3>
+    <small class="date">{{ project.date | date: "MMMM, y" }}</small>
+    <p class="description">{{ project.description }}</p>
+    <ul class="links">
+      <li>
+        <strong>Url</strong>
+        <small>
+          <a
+            href="{{ project.previewUrl }}"
+            target="_blank"
+            class="button hover-underline"
+          >
+            {{ project.previewUrl }}
+          </a>
+        </small>
+      </li>
+      <li>
+        <strong>Repo</strong>
+        <small>
+          <a
+            href="{{ project.repoUrl }}"
+            target="_blank"
+            class="button hover-underline"
+          >
+            {{ project.repoUrl }}
+          </a>
+        </small>
+      </li>
+    </ul>
+    <ul class="tags" *ngIf="project.tags && project.tags.length > 0">
+      <li *ngFor="let tag of project.tags">
+        <a href="{{ tag.url }}" target="_blank" class="button hover-underline">
+          {{ tag.name }}
+        </a>
+      </li>
+    </ul>
+  </aside>
+</article>
