@@ -1,16 +1,16 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from "@angular/core";
 import * as p5 from "p5";
 
 @Component({
-  selector: 'circle-background',
-  templateUrl: './circle-background.component.html',
-  styleUrls: ['./circle-background.component.sass']
+  selector: "circle-background",
+  templateUrl: "./circle-background.component.html",
+  styleUrls: ["./circle-background.component.sass"],
 })
 export class CircleBackgroundComponent implements OnInit, OnDestroy {
   private p5;
-  @Input() set hover(value: boolean){
-    if(this.p5) this.p5.setHoveredState(value);
-  };
+  @Input() set hover(value: boolean) {
+    if (this.p5) this.p5.setHoveredState(value);
+  }
 
   constructor() {
     window.onresize = this.onWindowResize;
