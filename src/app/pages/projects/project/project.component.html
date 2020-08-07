@@ -4,42 +4,37 @@
       <img src="{{ item }}" />
     </figure>
   </div>
-  <aside>
-    <h3 class="title">{{ project.title }}</h3>
-    <small class="date">{{ project.date | date: "MMMM, y" }}</small>
-    <p class="description">{{ project.description }}</p>
-    <ul class="links">
-      <li>
-        <strong>Url</strong>
-        <small>
+  <aside class="info">
+    <div class="sticky">
+      <p class="date">{{ project.date | date: "MMMM, y" }}</p>
+      <h3 class="title">{{ project.title }}</h3>
+      <ul class="tags" *ngIf="project.tags && project.tags.length > 0">
+        <li *ngFor="let tag of project.tags">
           <a
-            href="{{ project.previewUrl }}"
+            href="{{ tag.url }}"
             target="_blank"
-            class="button hover-underline"
+            class="button hover-fade"
+            [ngStyle]="{ 'background-color': tag.bg, color: tag.color }"
           >
+            {{ tag.name }}
+          </a>
+        </li>
+      </ul>
+      <p class="description">{{ project.description }}</p>
+      <ul class="links">
+        <li *ngIf="project.previewUrl" class="button hover-fade">
+          <i-feather name="link"></i-feather>
+          <a href="{{ project.previewUrl }}" target="_blank">
             {{ project.previewUrl }}
           </a>
-        </small>
-      </li>
-      <li>
-        <strong>Repo</strong>
-        <small>
-          <a
-            href="{{ project.repoUrl }}"
-            target="_blank"
-            class="button hover-underline"
-          >
+        </li>
+        <li *ngIf="project.repoUrl" class="button hover-fade">
+          <i-feather name="github"></i-feather>
+          <a href="{{ project.repoUrl }}" target="_blank">
             {{ project.repoUrl }}
           </a>
-        </small>
-      </li>
-    </ul>
-    <ul class="tags" *ngIf="project.tags && project.tags.length > 0">
-      <li *ngFor="let tag of project.tags">
-        <a href="{{ tag.url }}" target="_blank" class="button hover-underline">
-          {{ tag.name }}
-        </a>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
   </aside>
 </article>

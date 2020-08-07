@@ -11,7 +11,7 @@
 
 html
     font-family: $content-font
-    background-color: $bg-white
+    background-color: $grey-50
 
 button
     padding: 10px 20px
@@ -20,6 +20,8 @@ button
     cursor: pointer
     &:focus
         outline: none
+.button
+    cursor: pointer
 
 canvas
     display: block
@@ -39,7 +41,7 @@ menu-toggle
         padding: 0!important
     &.close
         button
-            color: $bg-white
+            color: $grey-50
 sidebar
     transition: left $fast
     @include hardwareAccelerated
@@ -47,7 +49,7 @@ sidebar
     position: fixed
     width: 20rem
     left: -20rem
-    background-color: $default-dark
+    background-color: $grey-800
     flex-direction: column
     display: flex
     justify-content: center
@@ -69,7 +71,7 @@ sidebar
     width: 100%
     z-index: 10
     position: fixed
-    background-color: #ffffff80;
+    background-color: $grey-50-80;
 
 .fixed-container
     width: 50rem
@@ -95,4 +97,4 @@ sidebar
             margin: 0.4rem
 
 .disabled
-    color: $default-light!important
+    color: $grey-600!important

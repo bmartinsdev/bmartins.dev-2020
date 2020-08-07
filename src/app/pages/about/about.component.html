@@ -1,6 +1,6 @@
 <div class="fullscreen-holder">
   <div class="fixed-container">
-    <h2>About</h2>
+    <h2 class="mb1">About</h2>
     <p>
       Everything you see on this website I'm developing in my spare time, as a
       way to learn new skills and improve others.
@@ -10,29 +10,35 @@
       developer with a passion for minimal design and efficient code. My daily
       job consists of developing new features for a multinational application.
     </p>
-    <p>
+    <p class="mb1">
       To reach me please use my
-      <a (mouseenter)="mouseHoverToggle(true)"
+      <a
+        (mouseenter)="mouseHoverToggle(true)"
         (mouseleave)="mouseHoverToggle(false)"
         href="https://twitter.com/LughAppDev"
         target="_blank"
-        class="button hover-underline">Twitter
+        class="button hover-underline"
+        >Twitter
       </a>
       or
-      <a (mouseenter)="mouseHoverToggle(true)"
+      <a
+        (mouseenter)="mouseHoverToggle(true)"
         (mouseleave)="mouseHoverToggle(false)"
         href="https://www.linkedin.com/in/brunorodrigues355/"
         target="_blank"
-        class="button hover-underline">
-        LinkedIn
-        </a>.
+        class="button hover-underline"
+      >
+        LinkedIn </a
+      >.
     </p>
-    <a (mouseenter)="mouseHoverToggle(true)"
+    <a
+      (mouseenter)="mouseHoverToggle(true)"
       (mouseleave)="mouseHoverToggle(false)"
       routerLink=""
-      class="hover-underline return-link">
+      class="hover-underline return-link"
+    >
       return
-      </a>
+    </a>
   </div>
 </div>
 <circle-background [hover]="hovered"></circle-background>

@@ -3,6 +3,11 @@
 $fast: 0.3s ease-in-out
 $slow: 0.6s ease-in-out
 
+.hover-fade
+    transition: $fast
+    &:hover
+        opacity: 0.7
+
 .hover-underline
     transition: $fast
     position: relative
@@ -10,7 +15,7 @@ $slow: 0.6s ease-in-out
     &:after
         content: ""
         position: absolute
-        bottom: 35%
+        bottom: 40%
         width: 0px
         height: 0.2rem
         margin: 0.2rem 0 0
@@ -18,7 +23,7 @@ $slow: 0.6s ease-in-out
         transition-duration: 0.30s
         opacity: 0
         left: 0
-        background-color: $default-dark
+        background-color: $grey-800
     &:hover 
         cursor: pointer
         &:before,

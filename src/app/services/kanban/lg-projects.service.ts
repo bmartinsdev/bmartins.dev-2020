@@ -46,7 +46,7 @@ export class LgProjectsService {
           "https://firebasestorage.googleapis.com/v0/b/applughwebsite.appspot.com/o/p5-orbit-particle-effect-inspiration.jpg?alt=media&token=a9712068-5b96-4833-bc3d-0cbc82867df5",
         ],
         tags: ["javascript", "p5.js"],
-        previewUrl: "https://lughapp.github.io/p5-orbit-particle-effect/",
+        previewUrl: "https://lughapp.github.io/p5-orbit-particle-effect",
         repoUrl: "https://github.com/lughapp/p5-orbit-particle-effect",
         hex: "#333333",
       }),
