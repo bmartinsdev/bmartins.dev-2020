@@ -61,12 +61,13 @@ export class CircleBackgroundComponent implements OnInit, OnDestroy {
       p.createCanvas(wWidth, wHeight).parent("circle-background");
       p.frameRate(24);
       for (var i = 0; i < 8; i++) {
-        fixedOrbit[i] = new Nanite(wWidth / 2, wHeight / 2, 4, 160);
+        fixedOrbit[i] = new Orbit(wWidth / 2, wHeight / 2, 4, 160);
       }
       for (var i = 0; i < 2; i++) {
-        followOrbit[i] = new Nanite(wWidth / 2, wHeight / 2, 3 + i / 6, 200);
+        followOrbit[i] = new Orbit(wWidth / 2, wHeight / 2, 3 + i / 6, 200);
       }
     };
+
     p.draw = () => {
       wWidth = p.windowWidth;
       wHeight = p.windowHeight;
@@ -108,8 +109,8 @@ export class CircleBackgroundComponent implements OnInit, OnDestroy {
         followOrbit[i].update(followX, followY);
         followOrbit[i].show();
       }
-      p.stroke("#fafafa");
-      p.fill("#fafafa");
+      p.stroke(globalThis.bgColor);
+      p.fill(globalThis.bgColor);
       p.ellipse(wWidth / 2, wHeight / 2, 139 * 2 - 1, 139 * 2 - 1);
     };
 
@@ -127,7 +128,7 @@ export class CircleBackgroundComponent implements OnInit, OnDestroy {
       }
     };
 
-    class Nanite {
+    class Orbit {
       pos;
       vel;
       acc;

@@ -1,8 +1,15 @@
 <article class="project" id="{{ project.id }}">
   <div class="gallery" *ngIf="project.gallery && project.gallery.length > 0">
-    <figure *ngFor="let item of project.gallery" class="image">
+    <div
+      *ngFor="let item of project.gallery; let i = index"
+      class="image"
+      [ngClass]="{
+        full:
+          project.gallery.length % 2 !== 0 && i === project.gallery.length - 1
+      }"
+    >
       <img src="{{ item }}" />
-    </figure>
+    </div>
   </div>
   <aside class="info">
     <div class="sticky">

@@ -2,27 +2,77 @@
 
 .project
     display: grid
-    grid-gap: 1.6rem
-    grid-template-columns: 60% 40%
-    @media(max-width: $sm)
+    grid-gap: 2rem
+    grid-template-columns: auto 20rem
+    padding-bottom: 4rem
+
+    @media(max-width: $md)
         grid-template-columns: auto
     
     .gallery
-        figure
+        display: grid
+        grid-gap: 1.6rem
+        align-self: center
+        grid-template-rows: min-content
+        grid-template-columns: 2fr 1fr 2fr
+
+        .image
             width: 100%
+            -webkit-box-shadow: 0 0 0.1rem 0 rgba(0,0,0,0.30)
+            -moz-box-shadow: 0 0 0.1rem 0 rgba(0,0,0,0.30)
+            box-shadow: 0 0 0.1rem 0 rgba(0,0,0,0.30)
+            transition-duration: 0.3s
+            cursor: pointer
+            
+            &:not(.active):hover
+                transform: scale(1.02)
+
+            &:nth-child(1)
+                grid-column: span 1
+
+            &:nth-child(2),
+            &:nth-child(3)
+                grid-column: span 2
+
+            &.full
+                grid-column: span 3
+                img
+                    height: 30rem
+                    @media(max-width: $xs)
+                        height: 20rem
+
+
             img
                 width: 100%
+                height: 15rem
+                object-fit: cover
+                @media(max-width: $xs)
+                    height: 10rem
+            
+
+        @media(max-width: $md)
+            grid-row: 2
+
+    .info
+        @media(max-width: $md)
+            grid-row: 1
+
     .sticky
         position: -webkit-sticky
         position: sticky
         top: 1.6rem
-        padding-bottom: 1.6rem
+
         .date
             color: $grey-600
             font-size: 0.7rem
             text-transform: uppercase
+
         .description
             padding: 3rem 0 3rem
+
+            @media(max-width: $md)
+                padding: 1rem 0 1rem
+
         .links
             li
                 list-style: none
@@ -32,20 +82,24 @@
                 text-overflow: ellipsis
                 width: 90%
                 overflow: hidden
+
                 i-feather
                     width: 0.8rem
                     height: 0.8rem
                     vertical-align: middle
+
         .tags
             li
                 display: inline
                 list-style: none
                 font-size: 0.6rem
                 margin-right: 0.5rem
+
                 a 
                     padding: 0.2rem 1rem
                     border-radius: 0.7rem
                     text-transform: uppercase
+
                     &:hover
                         background-color: $grey-800!important
                         color: $grey-50!important

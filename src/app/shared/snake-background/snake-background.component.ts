@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from "@angular/core";
 import * as p5 from "p5";
 
 @Component({
-  selector: 'snake-background',
-  templateUrl: './snake-background.component.html',
-  styleUrls: ['./snake-background.component.sass']
+  selector: "snake-background",
+  templateUrl: "./snake-background.component.html",
+  styleUrls: ["./snake-background.component.sass"],
 })
 export class SnakeBackgroundComponent implements OnInit, OnDestroy {
   private p5;
@@ -55,23 +55,23 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
     let pathFinding = 2;
     let resetGame = false;
     let directions = {
-      up: 'down',
-      down: 'up',
-      left: 'right',
-      right: 'left',
+      up: "down",
+      down: "up",
+      left: "right",
+      right: "left",
     };
-    
+
     p.setup = () => {
       p.disableFriendlyErrors = true;
       p.createCanvas(wWidth, wHeight).parent("snake-background");
-      let savedScore = localStorage.getItem('lugh-snake-score');
-      if(savedScore) score.max = Number.parseInt(savedScore);
+      let savedScore = localStorage.getItem("lugh-snake-score");
+      if (savedScore) score.max = Number.parseInt(savedScore);
       p.frameRate(currentFPS);
       if (debug) p.frameRate(60);
       food = new Food();
       snake = new Snake();
     };
-    
+
     function update() {
       if (snake.intersectsSelf() && snake.tailLength > snake.size) {
         snake.dead = true;
@@ -92,7 +92,7 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
           setTimeout(function () {
             if (snake.getScore() > score.max) {
               score.max = snake.getScore();
-              localStorage.setItem('lugh-snake-score', score.max.toString());
+              localStorage.setItem("lugh-snake-score", score.max.toString());
             }
             currentFPS = 10;
             pathFinding = 2;
@@ -103,26 +103,26 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
         }
       }
     }
-    
+
     p.draw = () => {
       update();
-      p.background('#fafafa');
+      p.background(globalThis.grey50);
       food.show();
       snake.show();
       keyDown = false;
-      p.textFont('Arial');
+      p.textFont("Arial");
       p.textAlign(p.RIGHT);
-      p.fill('#777777');
+      p.fill(globalThis.grey600);
       p.noStroke();
       p.textSize(11);
-      p.text('SCORE', score.pos.x + 50, score.pos.y);
-      p.text('BEST', score.pos.x + 160, score.pos.y);
-      p.fill('#000000');
+      p.text("SCORE", score.pos.x + 50, score.pos.y);
+      p.text("BEST", score.pos.x + 160, score.pos.y);
+      p.fill(globalThis.grey800);
       p.textSize(14);
       p.text(score.current, score.pos.x + 50, score.pos.y + 20);
       p.text(score.max, score.pos.x + 160, score.pos.y + 20);
-    }
-    
+    };
+
     function pathFinder() {
       switch (pathFinding) {
         case 1:
@@ -133,85 +133,85 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
           break;
       }
     }
-    
+
     function shortestPath() {
       if (!food.target) return;
       switch (snake.direction) {
-        case 'up':
+        case "up":
           if (snake.head.x < food.target.x) {
-            tryMove('right');
+            tryMove("right");
           } else if (snake.head.x > food.target.x) {
-            tryMove('left');
+            tryMove("left");
           } else if (
             snake.head.x === food.target.x &&
             snake.head.y < food.target.y
           ) {
-            tryMove('right');
+            tryMove("right");
           } else if (snake.head.y === food.target.y) {
             if (snake.head.x < food.target.x) {
-              tryMove('left');
+              tryMove("left");
             } else if (snake.head.x > food.target.x) {
-              tryMove('right');
+              tryMove("right");
             }
           } else {
             tryMove(snake.direction);
           }
           break;
-        case 'down':
+        case "down":
           if (snake.head.x > food.target.x) {
-            tryMove('left');
+            tryMove("left");
           } else if (snake.head.x < food.target.x) {
-            tryMove('right');
+            tryMove("right");
           } else if (
             snake.head.x === food.target.x &&
             snake.head.y > food.target.y
           ) {
-            tryMove('right');
+            tryMove("right");
           } else if (snake.head.y === food.target.y) {
             if (snake.head.x > food.target.x) {
-              tryMove('left');
+              tryMove("left");
             } else if (snake.head.x < food.target.x) {
-              tryMove('right');
+              tryMove("right");
             }
           } else {
             tryMove(snake.direction);
           }
           break;
-        case 'left':
+        case "left":
           if (snake.head.y < food.target.y) {
-            tryMove('down');
+            tryMove("down");
           } else if (snake.head.y > food.target.y) {
-            tryMove('up');
+            tryMove("up");
           } else if (
             snake.head.y === food.target.y &&
             snake.head.x < food.target.x
           ) {
-            tryMove('up');
+            tryMove("up");
           } else if (snake.head.x === food.target.x) {
             if (snake.head.y < food.target.y) {
-              tryMove('down');
+              tryMove("down");
             } else if (snake.head.y > food.target.y) {
-              tryMove('up');
+              tryMove("up");
             }
           } else {
             tryMove(snake.direction);
           }
           break;
-        case 'right':
+        case "right":
           if (snake.head.y > food.target.y) {
-            tryMove('up');
+            tryMove("up");
           } else if (snake.head.y < food.target.y) {
-            tryMove('down');
+            tryMove("down");
           } else if (
             snake.head.y === food.target.y &&
             snake.head.x > food.target.x
           ) {
-            tryMove('up');
+            tryMove("up");
           } else if (snake.head.x === food.target.x) {
             if (snake.head.y < food.target.y) {
-              tryMove('down');
+              tryMove("down");
             } else if (snake.head.y > food.target.y) {
-              tryMove('up');
+              tryMove("up");
             }
           } else {
             tryMove(snake.direction);
@@ -219,77 +219,89 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
           break;
       }
     }
-    
+
     function straightLines() {
       if (!food.target) return;
       switch (snake.direction) {
-        case 'up':
-          if(snake.head.y > food.target.y){
-            tryMove('up');
-          } else if(snake.head.y < food.target.y || snake.head.y === food.target.y){
+        case "up":
+          if (snake.head.y > food.target.y) {
+            tryMove("up");
+          } else if (
+            snake.head.y < food.target.y ||
+            snake.head.y === food.target.y
+          ) {
             if (snake.head.x <= food.target.x) {
-              tryMove('right');
+              tryMove("right");
             } else {
-              tryMove('left');
+              tryMove("left");
             }
           }
           break;
-        case 'down':
-          if(snake.head.y < food.target.y){
-            tryMove('down');
-          } else if(snake.head.y > food.target.y || snake.head.y === food.target.y){
+        case "down":
+          if (snake.head.y < food.target.y) {
+            tryMove("down");
+          } else if (
+            snake.head.y > food.target.y ||
+            snake.head.y === food.target.y
+          ) {
             if (snake.head.x <= food.target.x) {
-              tryMove('right');
+              tryMove("right");
             } else {
-              tryMove('left');
+              tryMove("left");
             }
           }
           break;
-        case 'left':
-          if(snake.head.x > food.target.x){
-            tryMove('left');
-          } else if(snake.head.x < food.target.x || snake.head.x === food.target.x){
+        case "left":
+          if (snake.head.x > food.target.x) {
+            tryMove("left");
+          } else if (
+            snake.head.x < food.target.x ||
+            snake.head.x === food.target.x
+          ) {
             if (snake.head.y >= food.target.y) {
-              tryMove('up');
+              tryMove("up");
             } else {
-              tryMove('down');
+              tryMove("down");
             }
           }
           break;
-        case 'right':
-          if(snake.head.x < food.target.x){
-            tryMove('right');
-          } else if(snake.head.x > food.target.x || snake.head.x === food.target.x){
+        case "right":
+          if (snake.head.x < food.target.x) {
+            tryMove("right");
+          } else if (
+            snake.head.x > food.target.x ||
+            snake.head.x === food.target.x
+          ) {
             if (snake.head.y >= food.target.y) {
-              tryMove('up');
+              tryMove("up");
             } else {
-              tryMove('down');
+              tryMove("down");
             }
           }
           break;
       }
     }
-    
+
     p.mousePressed = () => {
       let pos = p.createVector(
         p.floor(p.mouseX / scale) * scale,
         p.floor(p.mouseY / scale) * scale
       );
-      if(!snake.intersects(pos) && !outOfBoundaries(pos)) food.drop(pos);
-    }
-    
+      if (!snake.intersects(pos) && !outOfBoundaries(pos)) food.drop(pos);
+    };
+
     p.keyPressed = () => {
       move(p.key);
       pathFinding = 0;
-    }
-    
+    };
+
     function tryMove(key) {
       let paths = [key];
-    
+
       for (let [dir, opp] of Object.entries(directions)) {
         if (dir !== key && dir !== directions[snake.direction]) paths.push(dir);
       }
-    
+
       for (let dir of paths) {
         let head = snake.head.copy();
         snake.move(head, dir);
@@ -304,34 +316,34 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
       }
       move(key);
     }
-    
+
     function move(key) {
       if (keyDown) return;
       switch (key) {
-        case 'ArrowUp':
-        case 'w':
-        case 'up':
-          if (snake.direction !== 'down') snake.changeDirection('up');
+        case "ArrowUp":
+        case "w":
+        case "up":
+          if (snake.direction !== "down") snake.changeDirection("up");
           break;
-        case 'ArrowDown':
-        case 's':
-        case 'down':
-          if (snake.direction !== 'up') snake.changeDirection('down');
+        case "ArrowDown":
+        case "s":
+        case "down":
+          if (snake.direction !== "up") snake.changeDirection("down");
           break;
-        case 'ArrowRight':
-        case 'd':
-        case 'right':
-          if (snake.direction !== 'left') snake.changeDirection('right');
+        case "ArrowRight":
+        case "d":
+        case "right":
+          if (snake.direction !== "left") snake.changeDirection("right");
           break;
-        case 'ArrowLeft':
-        case 'a':
-        case 'left':
-          if (snake.direction !== 'right') snake.changeDirection('left');
+        case "ArrowLeft":
+        case "a":
+        case "left":
+          if (snake.direction !== "right") snake.changeDirection("left");
           break;
       }
       keyDown = true;
     }
-    
+
     function speedUp() {
       if (snake.tailLength < 20 && (currentFPS == 10 || currentFPS == 20)) {
         return;
@@ -352,24 +364,29 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
         p.frameRate(currentFPS);
       }
     }
-    
-    function outOfBoundaries(pos){
-      return pos.x < 0 || pos.y < 0 || pos.x > wWidth - scale || pos.y > wHeight - scale;
+
+    function outOfBoundaries(pos) {
+      return (
+        pos.x < 0 ||
+        pos.y < 0 ||
+        pos.x > wWidth - scale ||
+        pos.y > wHeight - scale
+      );
     }
-    
+
     function getEmptyPos() {
       let location = p.createVector(
         p.floor(p.random(cols)) * scale,
         p.floor(p.random(rows)) * scale
       );
-    
+
       while (snake.intersects(location)) {
         location = p.createVector(
           p.floor(p.random(cols)) * scale,
           p.floor(p.random(rows)) * scale
         );
       }
-    
+
       return location;
     }
 
@@ -384,7 +401,7 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
         this.foodLength = 0;
         this.target;
       }
-    
+
       drop(pos) {
         if (this.foodLength < this.max) {
           this.food.push(pos);
@@ -392,7 +409,7 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
           this.updateTarget(snake.head);
         }
       }
-    
+
       eat(pos) {
         for (let i = 0; i < this.foodLength; i++) {
           if (p.dist(this.food[i].x, this.food[i].y, pos.x, pos.y) < scale) {
@@ -406,7 +423,7 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
         this.updateTarget(snake.head);
         return false;
       }
-    
+
       updateTarget(head) {
         let foodDist;
         for (let i = 0; i < this.foodLength; i++) {
@@ -417,19 +434,24 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
           }
         }
       }
-    
+
       getQuantity() {
         return this.foodLength;
       }
-    
+
       show() {
         p.fill("#d28f3c");
-        p.stroke("#fafafa");
-    
-        for (let i = 0; i < this.foodLength; i++) p.circle(this.food[i].x + scale / 2, this.food[i].y + scale / 2, scale, scale);
+        p.stroke(globalThis.bgColor);
+
+        for (let i = 0; i < this.foodLength; i++)
+          p.circle(
+            this.food[i].x + scale / 2,
+            this.food[i].y + scale / 2,
+            scale
+          );
       }
     }
-    
+
     class Snake {
       speed;
       direction;
@@ -445,23 +467,27 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
         this.tailLength = 0;
         this.size = 10;
         this.dead = false;
-    
+
         this.head = p.createVector(p.floor(cols / 2), p.floor(rows / 2));
         this.head.mult(scale);
-    
+
         for (let i = 0; i < this.size; i++) {
           this.tail[i] = p.createVector(this.head.x, this.head.y);
         }
         this.tailLength = this.tail.length;
       }
-    
+
       update() {
-        for (let i = 0; i < this.tailLength - 1; i++) this.tail[i] = this.tail[i + 1];
-    
+        for (let i = 0; i < this.tailLength - 1; i++)
+          this.tail[i] = this.tail[i + 1];
+
         this.move(this.head, this.direction);
-        this.tail[this.tailLength - 1] = p.createVector(this.head.x, this.head.y);
+        this.tail[this.tailLength - 1] = p.createVector(
+          this.head.x,
+          this.head.y
+        );
       }
-    
+
       move(pos, dir) {
         switch (dir) {
           case "up":
@@ -477,54 +503,57 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
             pos.x = pos.x + this.speed * scale;
             break;
         }
-    
+
         pos.x = p.constrain(pos.x, 0, wWidth - scale);
         pos.y = p.constrain(pos.y, 0, wHeight - scale);
       }
-    
+
       intersects(pos) {
         if (this.intersectsHead(pos)) return true;
-    
-        for (let i = 0; i < this.tailLength - 1; i++) if (p.dist(this.tail[i].x, this.tail[i].y, pos.x, pos.y) < scale) return true;
-    
+
+        for (let i = 0; i < this.tailLength - 1; i++)
+          if (p.dist(this.tail[i].x, this.tail[i].y, pos.x, pos.y) < scale)
+            return true;
+
         return false;
       }
-    
+
       intersectsSelf() {
-        for (let i = 0; i < this.tailLength - 1; i++) if (this.intersectsHead(this.tail[i])) return true;
-    
+        for (let i = 0; i < this.tailLength - 1; i++)
+          if (this.intersectsHead(this.tail[i])) return true;
+
         return false;
       }
-    
+
       intersectsHead(pos) {
         return p.dist(this.head.x, this.head.y, pos.x, pos.y) < scale;
       }
-    
+
       changeDirection(dir) {
         this.direction = dir;
       }
-    
+
       getScore() {
         let score = (this.tailLength - this.size) * 850;
         return score > 0 ? score : 0;
       }
-    
+
       grow() {
         this.tail.push(p.createVector(this.head.x, this.head.y));
         this.tail.push(p.createVector(this.head.x, this.head.y));
         this.tail.push(p.createVector(this.head.x, this.head.y));
         this.tailLength = this.tail.length;
       }
-    
+
       show() {
-        p.fill("#ccc");
-        p.stroke("#fafafa");
-    
-        for (let i = 0; i < this.tailLength; i++) p.rect(this.tail[i].x, this.tail[i].y, scale, scale);
+        p.fill(globalThis.grey200);
+        p.stroke(globalThis.bgColor);
+
+        for (let i = 0; i < this.tailLength; i++)
+          p.rect(this.tail[i].x, this.tail[i].y, scale, scale);
         if (snake.dead) p.fill("#a97878");
         p.rect(this.head.x, this.head.y, scale, scale);
       }
-    }    
-
+    }
   };
 }
