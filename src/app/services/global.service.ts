@@ -8,6 +8,7 @@ declare global {
   var grey200: string;
   var grey600: string;
   var grey800: string;
+  var projectTags: any;
 }
 
 @Injectable({
@@ -16,6 +17,10 @@ declare global {
 export class GlobalService {
   private menuToggle = new BehaviorSubject<boolean>(false);
   menuState = this.menuToggle.asObservable();
+
+  constructor() {
+    this.initTags();
+  }
 
   toggleMenu() {
     this.menuToggle.next(!this.menuToggle.value);
@@ -33,5 +38,58 @@ export class GlobalService {
       case "dark":
         break;
     }
+  }
+
+  initTags() {
+    globalThis.projectTags = {
+      p5: {
+        url: "https://p5js.org/",
+        name: "P5.JS",
+        bg: "#ed225d",
+        color: "#fefefe",
+      },
+      javascript: {
+        url: "https://www.javascript.com/",
+        name: "Javascript",
+        bg: "#ec008c",
+        color: "#fefefe",
+      },
+      vue: {
+        url: "https://vuejs.org/",
+        name: "Vue.js",
+        bg: "#4fc08d",
+        color: "#fefefe",
+      },
+      laravel: {
+        url: "https://laravel.com/",
+        name: "Laravel",
+        bg: "#ff2d20",
+        color: "#fefefe",
+      },
+      kirby: {
+        url: "https://getkirby.com/",
+        name: "Kirby",
+        bg: "#f0c674",
+        color: "#fefefe",
+      },
+      wordpress: {
+        url: "https://wordpress.org/",
+        name: "Wordpress",
+        bg: "#117ac9",
+        color: "#fefefe",
+      },
+      woocommerce: {
+        url: "https://woocommerce.com/",
+        name: "WooCommerce",
+        bg: "#7f54b3",
+        color: "#fefefe",
+      },
+      jquery: {
+        url: "https://jquery.com/",
+        name: "jQuery",
+        bg: "#78cff5",
+        color: "#fefefe",
+      },
+    };
   }
 }

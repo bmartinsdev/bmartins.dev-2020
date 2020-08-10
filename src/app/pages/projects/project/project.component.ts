@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { Project } from "src/app/services/kanban/classes/Project";
 
 @Component({
@@ -6,11 +6,6 @@ import { Project } from "src/app/services/kanban/classes/Project";
   templateUrl: "./project.component.html",
   styleUrls: ["./project.component.sass"],
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent {
   @Input() project: Project;
-  constructor() {}
-
-  ngOnInit(): void {
-    console.log(this.project);
-  }
 }

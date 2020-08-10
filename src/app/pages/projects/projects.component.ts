@@ -20,4 +20,8 @@ export class ProjectsComponent implements OnInit {
   loadProjects() {
     this.projects$ = this.projectDB.getProjects();
   }
+
+  loadMore() {
+    this.projectDB.loadMoreProjects();
+  }
 }

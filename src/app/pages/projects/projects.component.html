@@ -1,5 +1,9 @@
 <div class="full-container" *ngIf="projects$ | async as projects; else loading">
-  <lg-project *ngFor="let project of projects" [project]="project"></lg-project>
+  <lg-project
+    *ngFor="let project of projects; let i = index"
+    [project]="project"
+    (mouseenter)="i === projects.length - 1 && loadMore()"
+  ></lg-project>
 </div>
 <ng-template #loading>
   <div class="fullscreen-holder">

@@ -12,7 +12,7 @@ export class Project {
   constructor(id: string, project: any = {}) {
     if (id) this.id = id;
     if (project.title) this.title = project.title;
-    if (project.date) this.date = project.date;
+    if (project.date) this.date = project.date.toDate();
     if (project.description) this.description = project.description;
     if (project.gallery) this.gallery = project.gallery;
     if (project.tags) {
@@ -25,24 +25,12 @@ export class Project {
   }
 
   convertTags(tags: Array<string>) {
-    const tagReferences = {
-      "p5.js": {
-        url: "https://p5js.org/",
-        bg: "#ed225d",
-        color: "#fefefe",
-      },
-      javascript: {
-        url: "https://www.javascript.com/",
-        bg: "#ec008c",
-        color: "#fefefe",
-      },
-    };
     for (let tag of tags) {
       this.tags.push({
         name: tag,
-        url: tagReferences[tag].url,
-        color: tagReferences[tag].color,
-        bg: tagReferences[tag].bg,
+        url: globalThis.projectTags[tag].url,
+        color: globalThis.projectTags[tag].color,
+        bg: globalThis.projectTags[tag].bg,
       });
     }
   }

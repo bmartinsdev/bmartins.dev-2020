@@ -27,7 +27,7 @@
           </a>
         </li>
       </ul>
-      <p class="description">{{ project.description }}</p>
+      <p class="description" [innerHTML]="project.description"></p>
       <ul class="links">
         <li *ngIf="project.previewUrl" class="button hover-fade">
           <i-feather name="link"></i-feather>
