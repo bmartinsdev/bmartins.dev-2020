@@ -44,7 +44,7 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
     let rows = Math.floor(wHeight / scale);
     let score = {
       pos: {
-        x: wWidth - 200,
+        x: wWidth - 160,
         y: wHeight - 50,
       },
       current: 0,
@@ -106,7 +106,7 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
 
     p.draw = () => {
       update();
-      p.background(globalThis.grey50);
+      p.background(globalThis.bgColor);
       food.show();
       snake.show();
       keyDown = false;
@@ -116,11 +116,11 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
       p.noStroke();
       p.textSize(11);
       p.text("SCORE", score.pos.x + 50, score.pos.y);
-      p.text("BEST", score.pos.x + 160, score.pos.y);
+      p.text("BEST", score.pos.x + 130, score.pos.y);
       p.fill(globalThis.grey800);
       p.textSize(14);
       p.text(score.current, score.pos.x + 50, score.pos.y + 20);
-      p.text(score.max, score.pos.x + 160, score.pos.y + 20);
+      p.text(score.max, score.pos.x + 130, score.pos.y + 20);
     };
 
     function pathFinder() {
