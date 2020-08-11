@@ -15,7 +15,7 @@ export class LgProjectsService {
 
   getProjects() {
     this.db
-      .collection("portfolio", (ref) => ref.orderBy("date", "desc").limit(1))
+      .collection("portfolio", (ref) => ref.orderBy("date", "desc").limit(2))
       .get()
       .subscribe((response) => {
         this.lastProject = response.docs[response.docs.length - 1];

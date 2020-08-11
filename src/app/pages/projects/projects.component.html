@@ -2,7 +2,6 @@
   <lg-project
     *ngFor="let project of projects; let i = index"
     [project]="project"
-    (mouseenter)="i === projects.length - 1 && loadMore()"
   ></lg-project>
 </div>
 <ng-template #loading>
@@ -10,3 +9,4 @@
     <h5>Loading...</h5>
   </div>
 </ng-template>
+<div class="scroll-trigger" (window:scroll)="loadMore($event)"></div>
