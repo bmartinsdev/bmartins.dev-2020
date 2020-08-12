@@ -2,18 +2,24 @@ import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { BehaviorSubject } from "rxjs";
 import { Project } from "./classes/Project";
+import { LoadingBarService } from "@ngx-loading-bar/core";
 
 @Injectable({
   providedIn: "root",
 })
 export class LgProjectsService {
+  loader = this.loadingBar.useRef();
   private projectsBehavior = new BehaviorSubject<Project[]>([]);
   private lastProject: any;
   projects$ = this.projectsBehavior.asObservable();
 
-  constructor(public db: AngularFirestore) {}
+  constructor(
+    public db: AngularFirestore,
+    private loadingBar: LoadingBarService
+  ) {}
 
   getProjects() {
+    this.loader.start();
     this.db
       .collection("portfolio", (ref) => ref.orderBy("date", "desc").limit(2))
       .get()
@@ -23,6 +29,7 @@ export class LgProjectsService {
         for (let data of response.docs) {
           this.addToProjects(data);
         }
+        this.loader.complete();
       });
 
     return this.projects$;
@@ -30,6 +37,7 @@ export class LgProjectsService {
 
   loadMoreProjects() {
     if (!this.lastProject) return;
+    this.loader.start();
     this.db
       .collection("portfolio", (ref) =>
         ref.orderBy("date", "desc").startAfter(this.lastProject).limit(1)
@@ -41,6 +49,7 @@ export class LgProjectsService {
         for (let data of response.docs) {
           this.addToProjects(data);
         }
+        this.loader.complete();
       });
   }
 

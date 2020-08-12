@@ -8,7 +8,12 @@
           project.gallery.length % 2 !== 0 && i === project.gallery.length - 1
       }"
     >
-      <img src="{{ item }}" />
+      <img
+        src="{{ item }}"
+        lightbox
+        backgroundColor="white"
+        closeButtonText="X"
+      />
     </div>
   </div>
   <aside class="info">

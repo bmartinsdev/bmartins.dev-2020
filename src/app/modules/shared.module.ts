@@ -14,6 +14,8 @@ import {
 } from "angular-feather/icons";
 import { MenuToggleComponent } from "../shared/menu-toggle/menu-toggle.component";
 import { SidebarComponent } from "../shared/sidebar/sidebar.component";
+import { LoadingBarModule } from "@ngx-loading-bar/core";
+import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
 
 const icons = {
   ChevronDown,
@@ -29,7 +31,18 @@ const icons = {
 
 @NgModule({
   declarations: [MenuToggleComponent, SidebarComponent],
-  imports: [CommonModule, FeatherModule.pick(icons)],
-  exports: [FeatherModule, MenuToggleComponent, SidebarComponent],
+  imports: [
+    CommonModule,
+    FeatherModule.pick(icons),
+    LoadingBarRouterModule,
+    LoadingBarModule,
+  ],
+  exports: [
+    FeatherModule,
+    MenuToggleComponent,
+    SidebarComponent,
+    LoadingBarRouterModule,
+    LoadingBarModule,
+  ],
 })
 export class SharedModule {}

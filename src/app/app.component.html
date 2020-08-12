@@ -1,6 +1,11 @@
-<sidebar [ngClass]="{'open': menuToggle}"></sidebar>
+<ngx-loading-bar
+  color="#CD67BA"
+  height="0.3rem"
+  [includeSpinner]="false"
+></ngx-loading-bar>
+<sidebar [ngClass]="{ open: menuToggle }"></sidebar>
 <menu-toggle></menu-toggle>
 <div class="lg-container">
-    <div class="lg-container-overlay" *ngIf="menuToggle"></div>
-    <router-outlet></router-outlet>
+  <div class="lg-container-overlay" *ngIf="menuToggle"></div>
+  <router-outlet></router-outlet>
 </div>
