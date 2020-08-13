@@ -14,4 +14,8 @@ export class AppComponent {
     this.global.menuState.subscribe((state) => (this.menuToggle = state));
     this.global.updateColors("light");
   }
+
+  closeMenu() {
+    this.global.toggleMenu();
+  }
 }

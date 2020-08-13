@@ -6,6 +6,10 @@
 <sidebar [ngClass]="{ open: menuToggle }"></sidebar>
 <menu-toggle></menu-toggle>
 <div class="lg-container">
-  <div class="lg-container-overlay" *ngIf="menuToggle"></div>
+  <div
+    class="lg-container-overlay"
+    *ngIf="menuToggle"
+    (click)="closeMenu()"
+  ></div>
   <router-outlet></router-outlet>
 </div>
