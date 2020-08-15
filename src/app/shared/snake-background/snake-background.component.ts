@@ -39,22 +39,15 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
     const debug = false;
     let snake;
     let food;
-    let scale = 24;
+    let score;
+    const scale = 24;
     let cols = Math.floor(wWidth / scale);
     let rows = Math.floor(wHeight / scale);
-    let score = {
-      pos: {
-        x: wWidth - 160,
-        y: wHeight - 50,
-      },
-      current: 0,
-      max: 0,
-    };
     let keyDown = false;
     let currentFPS = 10;
     let pathFinding = 2;
     let resetGame = false;
-    let directions = {
+    const directions = {
       up: "down",
       down: "up",
       left: "right",
@@ -64,12 +57,11 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
     p.setup = () => {
       p.disableFriendlyErrors = true;
       p.createCanvas(wWidth, wHeight).parent("snake-background");
-      let savedScore = localStorage.getItem("lugh-snake-score");
-      if (savedScore) score.max = Number.parseInt(savedScore);
       p.frameRate(currentFPS);
       if (debug) p.frameRate(60);
       food = new Food();
       snake = new Snake();
+      score = new Score();
     };
 
     function update() {
@@ -79,7 +71,7 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
         if (food.eat(snake.head)) {
           snake.grow();
         }
-        score.current = snake.getScore();
+        score.updateCurrent(snake.getScore());
         if (!debug) speedUp();
         if (food.getQuantity() === 0) food.drop(getEmptyPos());
       }
@@ -91,8 +83,7 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
           resetGame = true;
           setTimeout(function () {
             if (snake.getScore() > score.max) {
-              score.max = snake.getScore();
-              localStorage.setItem("lugh-snake-score", score.max.toString());
+              score.saveMax(snake.getScore());
             }
             currentFPS = 10;
             pathFinding = 2;
@@ -109,18 +100,8 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
       p.background(globalThis.bgColor);
       food.show();
       snake.show();
+      score.show();
       keyDown = false;
-      p.textFont("Arial");
-      p.textAlign(p.RIGHT);
-      p.fill(globalThis.grey600);
-      p.noStroke();
-      p.textSize(11);
-      p.text("SCORE", score.pos.x + 50, score.pos.y);
-      p.text("BEST", score.pos.x + 130, score.pos.y);
-      p.fill(globalThis.grey800);
-      p.textSize(14);
-      p.text(score.current, score.pos.x + 50, score.pos.y + 20);
-      p.text(score.max, score.pos.x + 130, score.pos.y + 20);
     };
 
     function pathFinder() {
@@ -449,6 +430,44 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
             this.food[i].y + scale / 2,
             scale
           );
+      }
+    }
+
+    class Score {
+      current;
+      max;
+      highest;
+      pos;
+      constructor() {
+        this.current = 0;
+        const savedScore = localStorage.getItem("lugh-snake-score");
+        this.max = savedScore ? Number.parseInt(savedScore) : 0;
+        this.pos = {
+          x: wWidth - 160,
+          y: wHeight - 50,
+        };
+      }
+
+      updateCurrent(current) {
+        this.current = current;
+      }
+
+      saveMax(max) {
+        localStorage.setItem("lugh-snake-score", max.toString());
+      }
+
+      show() {
+        p.textFont("Arial");
+        p.textAlign(p.RIGHT);
+        p.fill(globalThis.grey600);
+        p.noStroke();
+        p.textSize(11);
+        p.text("SCORE", this.pos.x + 50, this.pos.y);
+        p.text("BEST", this.pos.x + 130, this.pos.y);
+        p.fill(globalThis.grey800);
+        p.textSize(14);
+        p.text(this.current, this.pos.x + 50, this.pos.y + 20);
+        p.text(this.max, this.pos.x + 130, this.pos.y + 20);
       }
     }
 
