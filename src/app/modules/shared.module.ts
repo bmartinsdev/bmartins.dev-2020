@@ -14,6 +14,7 @@ import {
 } from "angular-feather/icons";
 import { MenuToggleComponent } from "../shared/menu-toggle/menu-toggle.component";
 import { SidebarComponent } from "../shared/sidebar/sidebar.component";
+import { LoaderComponent } from "../shared/loader/loader.component";
 import { LoadingBarModule } from "@ngx-loading-bar/core";
 import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
 
@@ -30,7 +31,7 @@ const icons = {
 };
 
 @NgModule({
-  declarations: [MenuToggleComponent, SidebarComponent],
+  declarations: [MenuToggleComponent, SidebarComponent, LoaderComponent],
   imports: [
     CommonModule,
     FeatherModule.pick(icons),
@@ -43,6 +44,7 @@ const icons = {
     SidebarComponent,
     LoadingBarRouterModule,
     LoadingBarModule,
+    LoaderComponent,
   ],
 })
 export class SharedModule {}

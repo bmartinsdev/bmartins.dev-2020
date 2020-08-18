@@ -3,6 +3,7 @@
   height="0.3rem"
   [includeSpinner]="false"
 ></ngx-loading-bar>
+<loader *ngIf="loading"></loader>
 <sidebar [ngClass]="{ open: menuToggle }"></sidebar>
 <menu-toggle></menu-toggle>
 <div class="lg-container">

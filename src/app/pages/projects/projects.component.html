@@ -1,12 +1,7 @@
-<div class="full-container" *ngIf="projects$ | async as projects; else loading">
+<div class="full-container" *ngIf="projects$ | async as projects">
   <lg-project
     *ngFor="let project of projects; let i = index"
     [project]="project"
   ></lg-project>
 </div>
-<ng-template #loading>
-  <div class="fullscreen-holder">
-    <h5>Loading...</h5>
-  </div>
-</ng-template>
 <div class="scroll-trigger" (window:scroll)="loadMore($event)"></div>

@@ -8,6 +8,8 @@ import * as p5 from "p5";
 })
 export class SnakeBackgroundComponent implements OnInit, OnDestroy {
   private p5;
+  public score;
+  public highest;
 
   constructor() {
     window.onresize = this.onWindowResize;
@@ -90,7 +92,7 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
             resetGame = false;
             snake = new Snake();
             food = new Food();
-          }, 3000);
+          }, 5000);
         }
       }
     }
@@ -440,6 +442,7 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
       pos;
       constructor() {
         this.current = 0;
+        this.highest = "🐍 AI 🐍";
         const savedScore = localStorage.getItem("lugh-snake-score");
         this.max = savedScore ? Number.parseInt(savedScore) : 0;
         this.pos = {
@@ -461,13 +464,15 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
         p.textAlign(p.RIGHT);
         p.fill(globalThis.grey600);
         p.noStroke();
+        p.textSize(9);
+        p.text(this.highest, this.pos.x + 130, this.pos.y - 40);
         p.textSize(11);
-        p.text("SCORE", this.pos.x + 50, this.pos.y);
-        p.text("BEST", this.pos.x + 130, this.pos.y);
+        p.text("HIGHEST SCORE", this.pos.x + 130, this.pos.y - 60);
+        p.text("SCORE", this.pos.x + 130, this.pos.y);
         p.fill(globalThis.grey800);
         p.textSize(14);
-        p.text(this.current, this.pos.x + 50, this.pos.y + 20);
-        p.text(this.max, this.pos.x + 130, this.pos.y + 20);
+        p.text(this.current, this.pos.x + 130, this.pos.y + 20);
+        p.text(this.max, this.pos.x + 130, this.pos.y - 20);
       }
     }
 

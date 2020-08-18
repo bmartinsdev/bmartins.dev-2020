@@ -6,7 +6,6 @@ import { Project } from "src/app/services/kanban/classes/Project";
 @Component({
   selector: "lg-projects",
   templateUrl: "./projects.component.html",
-  styleUrls: ["./projects.component.sass"],
 })
 export class ProjectsComponent implements OnInit, OnDestroy {
   projects$: Observable<Project[]>;
