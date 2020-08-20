@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy, Input } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import * as p5 from "p5";
+import { SnakeService } from "./snake.service";
 
 @Component({
   selector: "snake-background",
@@ -7,12 +8,13 @@ import * as p5 from "p5";
   styleUrls: ["./snake-background.component.sass"],
 })
 export class SnakeBackgroundComponent implements OnInit, OnDestroy {
-  private p5;
-  public score;
-  public highest;
-
-  constructor() {
+  p5;
+  current;
+  highest;
+  constructor(private service: SnakeService) {
     window.onresize = this.onWindowResize;
+    this.current = this.service.current$;
+    this.highest = this.service.highest$;
   }
 
   ngOnInit() {
@@ -29,6 +31,7 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
 
   private createCanvas = () => {
     this.p5 = new p5(this.drawing);
+    this.p5.setService(this.service);
   };
 
   private destroyCanvas = () => {
@@ -36,12 +39,12 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
   };
 
   private drawing = function (p: any) {
+    let score;
     let wWidth = p.windowWidth;
     let wHeight = p.windowHeight;
     const debug = false;
     let snake;
     let food;
-    let score;
     const scale = 24;
     let cols = Math.floor(wWidth / scale);
     let rows = Math.floor(wHeight / scale);
@@ -56,6 +59,10 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
       right: "left",
     };
 
+    p.setService = (service) => {
+      score = service;
+    };
+
     p.setup = () => {
       p.disableFriendlyErrors = true;
       p.createCanvas(wWidth, wHeight).parent("snake-background");
@@ -63,7 +70,6 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
       if (debug) p.frameRate(60);
       food = new Food();
       snake = new Snake();
-      score = new Score();
     };
 
     function update() {
@@ -72,8 +78,8 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
       } else {
         if (food.eat(snake.head)) {
           snake.grow();
+          score.updateCurrent(snake.getScore());
         }
-        score.updateCurrent(snake.getScore());
         if (!debug) speedUp();
         if (food.getQuantity() === 0) food.drop(getEmptyPos());
       }
@@ -84,9 +90,7 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
         if (!resetGame) {
           resetGame = true;
           setTimeout(function () {
-            if (snake.getScore() > score.max) {
-              score.saveMax(snake.getScore());
-            }
+            score.updateHighest(snake.getScore(), pathFinding !== 0);
             currentFPS = 10;
             pathFinding = 2;
             resetGame = false;
@@ -102,7 +106,6 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
       p.background(globalThis.bgColor);
       food.show();
       snake.show();
-      score.show();
       keyDown = false;
     };
 
@@ -432,47 +435,6 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
             this.food[i].y + scale / 2,
             scale
           );
-      }
-    }
-
-    class Score {
-      current;
-      max;
-      highest;
-      pos;
-      constructor() {
-        this.current = 0;
-        this.highest = "🐍 AI 🐍";
-        const savedScore = localStorage.getItem("lugh-snake-score");
-        this.max = savedScore ? Number.parseInt(savedScore) : 0;
-        this.pos = {
-          x: wWidth - 160,
-          y: wHeight - 50,
-        };
-      }
-
-      updateCurrent(current) {
-        this.current = current;
-      }
-
-      saveMax(max) {
-        localStorage.setItem("lugh-snake-score", max.toString());
-      }
-
-      show() {
-        p.textFont("Arial");
-        p.textAlign(p.RIGHT);
-        p.fill(globalThis.grey600);
-        p.noStroke();
-        p.textSize(9);
-        p.text(this.highest, this.pos.x + 130, this.pos.y - 40);
-        p.textSize(11);
-        p.text("HIGHEST SCORE", this.pos.x + 130, this.pos.y - 60);
-        p.text("SCORE", this.pos.x + 130, this.pos.y);
-        p.fill(globalThis.grey800);
-        p.textSize(14);
-        p.text(this.current, this.pos.x + 130, this.pos.y + 20);
-        p.text(this.max, this.pos.x + 130, this.pos.y - 20);
       }
     }
 

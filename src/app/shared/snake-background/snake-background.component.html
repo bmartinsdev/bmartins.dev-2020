@@ -1,7 +1,7 @@
 <div id="snake-background"></div>
-<!-- <div class="score">
+<div class="score">
   <p>HIGHEST</p>
-  <small>{{ highest }}</small>
+  <small>{{ highest | async }}</small>
   <p>SCORE</p>
-  <small>{{ score }}</small>
-</div> -->
+  <small>{{ current | async }}</small>
+</div>
