@@ -1,7 +1,9 @@
 <div id="snake-background"></div>
 <div class="score">
-  <p>HIGHEST</p>
-  <small>{{ highest | async }}</small>
-  <p>SCORE</p>
-  <small>{{ current | async }}</small>
+  <p>Score</p>
+  <h5>{{ current | async }}</h5>
+  <div *ngIf="recordName !== '' && recordScore !== 0">
+    <p><a class="button hover-underline">Highest</a></p>
+    <h5>{{ recordScore | async }}</h5>
+  </div>
 </div>

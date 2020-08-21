@@ -11,7 +11,7 @@
     "dev": "npm run serve & npm run watch"
   },
   "engines": {
-    "node": "10"
+    "node": "8"
   },
   "main": "lib/index.js",
   "dependencies": {

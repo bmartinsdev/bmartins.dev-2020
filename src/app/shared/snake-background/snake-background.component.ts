@@ -10,11 +10,13 @@ import { SnakeService } from "./snake.service";
 export class SnakeBackgroundComponent implements OnInit, OnDestroy {
   p5;
   current;
-  highest;
+  recordName;
+  recordScore;
   constructor(private service: SnakeService) {
     window.onresize = this.onWindowResize;
     this.current = this.service.current$;
-    this.highest = this.service.highest$;
+    this.recordName = this.service.name$;
+    this.recordScore = this.service.score$;
   }
 
   ngOnInit() {
@@ -61,6 +63,7 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
 
     p.setService = (service) => {
       score = service;
+      score.getTop10();
     };
 
     p.setup = () => {

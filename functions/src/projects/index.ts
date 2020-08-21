@@ -3,8 +3,6 @@ import * as admin from "firebase-admin";
 import { Project } from "./classes";
 import { v4 as uuid } from "uuid";
 
-admin.initializeApp();
-
 //#region callable functions
 
 // Returns active tasks according to user permisssions
@@ -14,8 +12,8 @@ export const activeTasks = functions.https.onCall((data, context) => {
   db.collection("projects")
     .doc("defaultSections")
     .get()
-    .then((snapshot: any) => {
-      console.log(snapshot.data);
+    .then((sectionsData: any) => {
+      console.log(sectionsData.data);
     })
     .catch((err: any) => {
       throw new functions.https.HttpsError("unknown", err.message, err);
@@ -43,13 +41,13 @@ export const projectsList = functions.https.onCall(async (data, context) => {
       .collection("projects")
       .doc("listFull")
       .get();
-    const data = snapshot.data();
+    const projectListData = snapshot.data();
     const projectArray: any = [];
 
-    for (let key in data) {
+    for (const key in projectListData) {
       projectArray.push({
         id: key,
-        ...data[key],
+        ...projectListData[key],
       } as Project);
     }
 
@@ -70,18 +68,18 @@ export const createProject = functions.https.onCall(async (data, context) => {
       .collection("projects")
       .doc("listFull")
       .get();
-    const projectList: any = snapshot.data();
+    const projectListData: any = snapshot.data();
 
-    let projectUuid = uuid();
-    let newProject = new Project(data);
+    const projectUuid = uuid();
+    const newProject = new Project(data);
 
-    projectList[projectUuid] = newProject.save();
+    projectListData[projectUuid] = newProject.save();
 
     return await admin
       .firestore()
       .collection("projects")
       .doc("listFull")
-      .update(projectList);
+      .update(projectListData);
   } catch (error) {
     throw new functions.https.HttpsError("unknown", error.message, error);
   }
@@ -97,20 +95,20 @@ export const updateProject = functions.https.onCall((data, context) => {
   db.collection("projects")
     .doc("listFull")
     .get()
-    .then((snapshot: any) => {
+    .then((projectListData: any) => {
       let projectList: any = {};
-      if (snapshot.data.length) {
-        projectList = snapshot.data;
+      if (projectListData.data.length) {
+        projectList = projectListData.data;
       }
-      let newProject = data as Project;
+      const newProject = data as Project;
 
       projectList[data.id] = newProject.save();
 
       db.collection("projects")
         .doc("listFull")
         .update(projectList)
-        .then((snapshot: any) => {
-          return snapshot[data.id];
+        .then((updatedProjectData: any) => {
+          return updatedProjectData[data.id];
         })
         .catch((err: any) => {
           throw new functions.https.HttpsError("unknown", err.message, err);
@@ -130,10 +128,10 @@ export const removeProject = functions.https.onCall((data, context) => {
   db.collection("projects")
     .doc("listFull")
     .get()
-    .then((snapshot: any) => {
+    .then((projectListData: any) => {
       let projectList: any = {};
-      if (snapshot.data.length) {
-        projectList = snapshot.data;
+      if (projectListData.data.length) {
+        projectList = projectListData.data;
       }
       if (projectList[data.id]) {
         delete projectList[data.id];
@@ -144,8 +142,8 @@ export const removeProject = functions.https.onCall((data, context) => {
       db.collection("projects")
         .doc("listFull")
         .update(projectList)
-        .then((snapshot: any) => {
-          return snapshot[data.id];
+        .then((updatedProjectData: any) => {
+          return updatedProjectData[data.id];
         })
         .catch((err: any) => {
           throw new functions.https.HttpsError("unknown", err.message, err);
@@ -158,8 +156,6 @@ export const removeProject = functions.https.onCall((data, context) => {
 
 // Move task
 //export const moveTask = functions.https.onCall((data, context) => {});
-
-//#endregion
 
 //#region Triggers
 
