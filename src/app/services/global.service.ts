@@ -8,6 +8,7 @@ declare global {
   var grey200: string;
   var grey600: string;
   var grey800: string;
+  var primary: string;
   var projectTags: any;
 }
 
@@ -29,6 +30,7 @@ export class GlobalService {
   updateColors(theme) {
     switch (theme) {
       case "light":
+        globalThis.color = "#D28F3C";
         globalThis.bgColor = "#FFFFFF";
         globalThis.grey50 = "#FAFAFA";
         globalThis.grey200 = "#CCCCCC";

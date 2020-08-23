@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { AngularFireFunctions } from "@angular/fire/functions";
 import { AngularFirestore } from "@angular/fire/firestore";
-import { SnakeScore } from "functions/src/global/classes";
+import { MatDialog } from "@angular/material/dialog";
+import { SnakeDialogComponent } from "./snake-dialog/snake-dialog.component";
 
 @Injectable({
   providedIn: "root",
@@ -17,7 +18,11 @@ export class SnakeService {
   private top10 = new BehaviorSubject<Score[]>([]);
   top10$ = this.top10.asObservable();
 
-  constructor(public db: AngularFirestore, private fns: AngularFireFunctions) {}
+  constructor(
+    public db: AngularFirestore,
+    private fns: AngularFireFunctions,
+    public dialog: MatDialog
+  ) {}
 
   getTop10() {
     const top10doc = this.db.doc("users/snakeTop10").get();
@@ -37,8 +42,12 @@ export class SnakeService {
   }
 
   updateHighest(score: number, isSnake: boolean) {
-    if (this.recordScore.getValue() > score) return;
-    console.log("Trigger dialog");
+    //if (this.recordScore.getValue() > score) return;
+    const dialogRef = this.dialog.open(SnakeDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
 

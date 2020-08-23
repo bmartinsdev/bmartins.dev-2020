@@ -429,7 +429,7 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
       }
 
       show() {
-        p.fill("#d28f3c");
+        p.fill(globalThis.color);
         p.stroke(globalThis.bgColor);
 
         for (let i = 0; i < this.foodLength; i++)

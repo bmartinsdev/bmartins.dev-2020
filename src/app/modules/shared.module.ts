@@ -17,6 +17,8 @@ import { SidebarComponent } from "../shared/sidebar/sidebar.component";
 import { LoaderComponent } from "../shared/loader/loader.component";
 import { LoadingBarModule } from "@ngx-loading-bar/core";
 import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatInputModule } from "@angular/material/input";
 
 const icons = {
   ChevronDown,
@@ -45,6 +47,8 @@ const icons = {
     LoadingBarRouterModule,
     LoadingBarModule,
     LoaderComponent,
+    MatDialogModule,
+    MatInputModule,
   ],
 })
 export class SharedModule {}
