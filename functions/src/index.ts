@@ -16,5 +16,4 @@ export const createProject = projects.createProject;
 export const removeProject = projects.removeProject;
 
 // GLOBAL
-export const getSnakeScore = globalFunctions.getSnakeScore;
 export const updateSnakeScore = globalFunctions.updateSnakeScore;

@@ -6,12 +6,16 @@ export class SnakeScore {
     this.rank = scores;
   }
 
-  checkHighestScores(score: Score) {
+  calculateRanking(score: Score) {
     this.rank.push(score);
     this.rank.sort((a, b) => {
       return a.score > b.score ? -1 : 1;
     });
     this.rank.slice(0, 10);
+  }
+
+  getRank() {
+    return this.rank;
   }
 }
 

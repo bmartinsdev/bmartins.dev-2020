@@ -8,31 +8,35 @@ import { SnakeScore, Score } from "./classes";
 // ** max: string
 // ** user: string
 // return updated score
-export const updateSnakeScore = functions.https.onCall((data, context) => {
-  const db = admin.firestore();
-  db.collection("users")
-    .doc("snakeTop10")
-    .get()
-    .then((snakeTop10: any) => {
+export const updateSnakeScore = functions.https.onCall(
+  async (data, context) => {
+    try {
+      const snapshot = await admin
+        .firestore()
+        .collection("users")
+        .doc("snakeTop10")
+        .get();
+      const top10: any = snapshot.data();
+
       let storedScore: any = {};
-      if (snakeTop10.data.length) {
-        storedScore = snakeTop10.data as SnakeScore;
-      }
-      if (Number(data.score) > storedScore[storedScore.length - 1].score) {
-        storedScore.checkHighestScores(data as Score);
+      if (top10.rank.length) {
+        storedScore = new SnakeScore(top10.rank);
       }
 
-      db.collection("users")
+      if (
+        Number(data.score) > top10.rank[top10.rank.length - 1].score ||
+        top10.rank.length < 10
+      ) {
+        storedScore.calculateRanking(data as Score);
+      }
+      await admin
+        .firestore()
+        .collection("users")
         .doc("snakeTop10")
-        .update(storedScore)
-        .then((updatedTop10: any) => {
-          return updatedTop10.data();
-        })
-        .catch((err: any) => {
-          throw new functions.https.HttpsError("unknown", err.message, err);
-        });
-    })
-    .catch((err: any) => {
-      throw new functions.https.HttpsError("unknown", err.message, err);
-    });
-});
+        .update({ rank: storedScore.getRank() });
+      return storedScore.getRank();
+    } catch (error) {
+      throw new functions.https.HttpsError("unknown", error.message, error);
+    }
+  }
+);
