@@ -1,19 +1,23 @@
 import { Component } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialogRef } from "@angular/material/dialog";
+import { FormControl, Validators, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "snake-dialog",
   templateUrl: "./snake-dialog.component.html",
 })
 export class SnakeDialogComponent {
-  name: string;
+  submitScoreForm = new FormGroup({
+    name: new FormControl("", [Validators.required]),
+  });
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialogRef<SnakeDialogComponent>) {}
 
   onNoClick() {
-    this.dialog.closeAll();
+    this.dialog.close();
   }
   onSubmit() {
-    console.log(this.name);
+    if (this.submitScoreForm.get("name").hasError("required")) return;
+    this.dialog.close(this.submitScoreForm.get("name").value);
   }
 }

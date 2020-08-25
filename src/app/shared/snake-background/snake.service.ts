@@ -4,11 +4,13 @@ import { AngularFireFunctions } from "@angular/fire/functions";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { MatDialog } from "@angular/material/dialog";
 import { SnakeDialogComponent } from "./snake-dialog/snake-dialog.component";
+import { SnakeScoreComponent } from "./snake-score/snake-score.component";
 
 @Injectable({
   providedIn: "root",
 })
 export class SnakeService {
+  private submitTop10;
   private currentScore = new BehaviorSubject<number>(0);
   current$ = this.currentScore.asObservable();
   private recordScore = new BehaviorSubject<number>(0);
@@ -22,7 +24,9 @@ export class SnakeService {
     public db: AngularFirestore,
     private fns: AngularFireFunctions,
     public dialog: MatDialog
-  ) {}
+  ) {
+    this.submitTop10 = fns.httpsCallable("updateSnakeScore");
+  }
 
   getTop10() {
     const top10doc = this.db.doc("users/snakeTop10").get();
@@ -42,12 +46,40 @@ export class SnakeService {
   }
 
   updateHighest(score: number, isSnake: boolean) {
-    //if (this.recordScore.getValue() > score) return;
-    const dialogRef = this.dialog.open(SnakeDialogComponent);
+    if (
+      this.top10.getValue()[this.top10.getValue().length - 1].score < score ||
+      this.top10.getValue().length < 9
+    ) {
+      if (isSnake) {
+        this.submitTop10({ score: score, name: "🐍 Snake AI 🐍" }).subscribe({
+          next: (submitted) => {
+            const ranking = submitted as Score[];
+            this.top10.next(ranking);
+            this.recordScore.next(ranking[0].score);
+            this.recordName.next(ranking[0].name);
+          },
+        });
+        return;
+      }
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+      const dialogRef = this.dialog.open(SnakeDialogComponent);
+
+      dialogRef.afterClosed().subscribe((result) => {
+        if (!result) return;
+        this.submitTop10({ score: score, name: result }).subscribe({
+          next: (submitted) => {
+            const ranking = submitted as Score[];
+            this.top10.next(ranking);
+            this.recordScore.next(ranking[0].score);
+            this.recordName.next(ranking[0].name);
+          },
+        });
+      });
+    }
+  }
+
+  openTop10Modal() {
+    this.dialog.open(SnakeScoreComponent, { data: this.top10.getValue() });
   }
 }
 

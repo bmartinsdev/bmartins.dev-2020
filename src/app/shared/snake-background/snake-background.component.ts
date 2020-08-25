@@ -27,6 +27,10 @@ export class SnakeBackgroundComponent implements OnInit, OnDestroy {
     this.destroyCanvas();
   }
 
+  checkTop10() {
+    this.service.openTop10Modal();
+  }
+
   private onWindowResize = (e) => {
     this.p5.resizeCanvas(this.p5.windowWidth, this.p5.windowHeight);
   };

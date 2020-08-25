@@ -3,7 +3,7 @@
   <p>Score</p>
   <h5>{{ current | async }}</h5>
   <div *ngIf="recordName !== '' && recordScore !== 0">
-    <p><a class="button hover-underline">Highest</a></p>
+    <p><a class="button hover-underline" (click)="checkTop10()">Highest</a></p>
     <h5>{{ recordScore | async }}</h5>
   </div>
 </div>

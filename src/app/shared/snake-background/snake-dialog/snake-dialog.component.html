@@ -1,14 +1,19 @@
-<h3 mat-dialog-title>You reached Top 10!</h3>
-<div mat-dialog-content>
-  <p>Submit your score?</p>
-  <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input matInput formControlName="name" />
-  </mat-form-field>
-</div>
-<div class="modal-actions">
-  <button (click)="onNoClick()" class="btn">No Thanks</button>
-  <button (click)="onSubmit()" class="btn btn-primary">
-    Submit
-  </button>
-</div>
+<form [formGroup]="submitScoreForm" (submit)="onSubmit()">
+  <h3 mat-dialog-title>You reached Top 10!</h3>
+  <div mat-dialog-content>
+    <p>Submit your score?</p>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="submitScoreForm.get('name').hasError('required')">
+        Can't be empty =(
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="modal-actions">
+    <button (click)="onNoClick()" class="btn">No Thanks</button>
+    <button (click)="onSubmit()" class="btn btn-primary">
+      Submit
+    </button>
+  </div>
+</form>
