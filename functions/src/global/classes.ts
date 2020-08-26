@@ -11,7 +11,7 @@ export class SnakeScore {
     this.rank.sort((a, b) => {
       return a.score > b.score ? -1 : 1;
     });
-    this.rank.slice(0, 10);
+    this.rank = this.rank.slice(0, 10);
   }
 
   getRank() {
