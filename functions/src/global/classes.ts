@@ -7,7 +7,12 @@ export class SnakeScore {
   }
 
   calculateRanking(score: Score) {
-    this.rank.push(score);
+    const snakeIndex = this.rank.findIndex((rank) => rank.name === score.name);
+    if (snakeIndex && this.rank[snakeIndex].score < score.score) {
+      this.rank[snakeIndex].score = score.score;
+    } else {
+      this.rank.push(score);
+    }
     this.rank.sort((a, b) => {
       return a.score > b.score ? -1 : 1;
     });
