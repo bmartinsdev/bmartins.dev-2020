@@ -9,8 +9,9 @@ Website created in angular 9 to keep track of my projects.
 - [X] Snake game highest score
 - [X] Lazy loaded portfolio 
 - [X] Find out how css grid works for portfolio galleries 
-- [] Some random loading plugin
-- [] Cool Instagram blurred images loading
-- [] Custom cursor
-- [] Transitions everywhere
-- [] Delete ToDo page from website, it was a stupid idea
+- [ ] Some random loading plugin
+- [ ] Cool Instagram blurred images loading
+- [ ] Custom cursor
+- [ ] Transitions everywhere
+- [ ] Delete ToDo page from website, it was a stupid idea
+- [ ] Don't need auth anymore, delete that to
