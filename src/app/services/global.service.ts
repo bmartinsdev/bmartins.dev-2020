@@ -92,6 +92,18 @@ export class GlobalService {
         bg: "#78cff5",
         color: "#fefefe",
       },
+      angular: {
+        url: "https://angular.io/",
+        name: "Angular",
+        bg: "#c3002f",
+        color: "#fefefe",
+      },
+      firebase: {
+        url: "https://firebase.google.com/",
+        name: "Firebase",
+        bg: "#f5820b",
+        color: "#fefefe",
+      },
     };
   }
 }
