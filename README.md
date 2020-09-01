@@ -1,17 +1,19 @@
 # Portfolio Website
+
 Website created in angular 9 to keep track of my projects.
 
 ## Features
-- [X] Lazy load modules and routing
-- [X] Firebase integration
-- [X] About page with p5 background
+
+- [x] Lazy load modules and routing
+- [x] Firebase integration
+- [x] About page with p5 background
 - [x] Homepage with snake game in background
-- [X] Snake game highest score
-- [X] Lazy loaded portfolio 
-- [X] Find out how css grid works for portfolio galleries 
-- [ ] Some random loading plugin
-- [ ] Cool Instagram blurred images loading
+- [x] Snake game highest score
+- [x] Lazy loaded portfolio
+- [x] Find out how css grid works for portfolio galleries
+- [x] Some random loading plugin
+- [x] Cool Instagram blurred images loading
 - [ ] Custom cursor
 - [ ] Transitions everywhere
-- [ ] Delete ToDo page from website, it was a stupid idea
-- [ ] Don't need auth anymore, delete that to
+- [ ] Improve page insights score
+- [ ] Add Server Side Rendering for SEO

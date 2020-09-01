@@ -1,4 +1,4 @@
-import { Directive, Input, ElementRef } from "@angular/core";
+import { Directive, Input, ElementRef, Renderer2 } from "@angular/core";
 
 @Directive({
   selector: "[blurred]",
@@ -8,7 +8,7 @@ import { Directive, Input, ElementRef } from "@angular/core";
 })
 export class BlurredDirective {
   @Input() original: string;
-  constructor(private elementRef: ElementRef) {}
+  constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
 
   ngOnChanges(changes) {
     if (changes["original"] && changes["original"].currentValue) {
@@ -19,7 +19,12 @@ export class BlurredDirective {
 
     loaded.onload = () => {
       setTimeout(() => {
-        this.elementRef.nativeElement.src = loaded.src;
+        this.renderer.setProperty(
+          this.elementRef.nativeElement,
+          "src",
+          this.original
+        );
+        this.renderer.removeClass(this.elementRef.nativeElement, "blurred");
       }, 1000);
     };
   }
