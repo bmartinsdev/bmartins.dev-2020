@@ -3,7 +3,7 @@ export class Project {
   title: string;
   date: Date;
   description: string;
-  gallery: Array<string> = [];
+  gallery: Array<any> = [];
   tags: Array<any> = [];
   previewUrl: string;
   repoUrl: string;

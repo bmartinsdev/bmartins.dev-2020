@@ -6,11 +6,12 @@ import { Routes, RouterModule } from "@angular/router";
 import { SharedModule } from "./shared.module";
 import { LgProjectsService } from "../services/kanban/lg-projects.service";
 import { CrystalLightboxModule } from "@crystalui/angular-lightbox";
+import { BlurredDirective } from "../shared/blurred.directive";
 
 const routes: Routes = [{ path: "", component: ProjectsComponent }];
 
 @NgModule({
-  declarations: [ProjectsComponent, ProjectComponent],
+  declarations: [ProjectsComponent, ProjectComponent, BlurredDirective],
   imports: [
     CommonModule,
     SharedModule,
