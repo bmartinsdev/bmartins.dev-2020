@@ -4,7 +4,13 @@ const { connectionString, dest, orig } = require("../credentials");
 
 // Builds angular app
 function build(cb) {
-  const building = spawn("ng", ["build", "--prod", "--verbose"]);
+  const building = spawn("ng", [
+    "build",
+    "--prod",
+    "--build-optimizer",
+    "--vendor-chunk=true",
+    "--verbose",
+  ]);
   building.stdout.on("data", function (data) {
     console.log(data.toString());
   });
@@ -43,3 +49,4 @@ function sync(cb) {
 }
 
 exports.deploy = gulp.series(build, sync);
+exports.sync = gulp.series(sync);

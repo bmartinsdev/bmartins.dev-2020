@@ -6,3 +6,9 @@ RewriteRule ^ - [L]
 
 # If the requested resource doesn't exist, use index.html
 RewriteRule ^ /index.html
+
+<IfModule mod_expires.c>
+    ## Enable expiration control
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+</IfModule>
