@@ -1,7 +1,9 @@
 <ngx-loading-bar height="0.3rem" [includeSpinner]="false"></ngx-loading-bar>
 <loader *ngIf="loading"></loader>
 <sidebar [ngClass]="{ open: menuToggle }"></sidebar>
-<menu-toggle></menu-toggle>
+<menu-toggle
+  class="animate__animated animate__fadeIn animate__delay-2s"
+></menu-toggle>
 <div class="lg-container">
   <div
     class="lg-container-overlay"

@@ -1,4 +1,7 @@
-<article class="project" id="{{ project.id }}">
+<article
+  class="project animate__animated animate__fadeInUp"
+  id="{{ project.id }}"
+>
   <div
     class="gallery"
     *ngIf="project.gallery && project.gallery.length > 0"
@@ -24,8 +27,12 @@
   </div>
   <aside class="info">
     <div class="sticky">
-      <h3 class="title">{{ project.title }}</h3>
-      <p class="date">{{ project.date | date: "MMMM, y" }}</p>
+      <h3 class="title">
+        {{ project.title }}
+      </h3>
+      <p class="date">
+        {{ project.date | date: "MMMM, y" }}
+      </p>
       <ul class="tags" *ngIf="project.tags && project.tags.length > 0">
         <li *ngFor="let tag of project.tags">
           <a
