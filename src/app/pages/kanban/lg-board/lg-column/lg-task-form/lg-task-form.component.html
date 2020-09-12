@@ -1,8 +1,0 @@
-<form name="sectionId" [formGroup]="addTaskForm" (submit)="addTask()">
-  <mat-form-field>
-    <input matInput formControlName="title" placeholder="New task">
-    <mat-error *ngIf="addTaskForm.get('title').hasError('required')">
-      Can't be empty =(
-    </mat-error>
-  </mat-form-field>
-</form>

@@ -1,8 +1,0 @@
-<div *ngIf="sections$ | async; let sections; else loading" cdkDropListGroup>
-    <app-lg-board [sections]="sections"></app-lg-board>
-</div>
-<ng-template #loading>
-    <div class="fullscreen-holder">
-        <h5>Loading...</h5>
-    </div>
-</ng-template>
