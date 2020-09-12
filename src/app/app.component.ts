@@ -16,6 +16,7 @@ import {
 export class AppComponent {
   menuToggle: boolean = true;
   loading: boolean = true;
+  darkMode: boolean = false;
 
   constructor(private global: GlobalService, private router: Router) {
     this.router.events.subscribe((event: Event) => {
@@ -41,6 +42,11 @@ export class AppComponent {
   ngOnInit() {
     this.global.menuState.subscribe((state) => (this.menuToggle = state));
     this.global.updateColors("light");
+  }
+
+  toggleDarkMode() {
+    this.darkMode = !this.darkMode;
+    this.global.updateColors("swap");
   }
 
   closeMenu() {

@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
-import { Section } from "../services/kanban/classes/Section";
-import { LgKanbanService } from "../services/kanban/lg-kanban.service";
 
 @Component({
   selector: "app-testing",

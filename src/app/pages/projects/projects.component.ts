@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Observable } from "rxjs";
-import { LgProjectsService } from "src/app/services/kanban/lg-projects.service";
-import { Project } from "src/app/services/kanban/classes/Project";
+import { LgProjectsService } from "src/app/services/lg-projects.service";
+import { Project } from "src/app/services/classes/Project";
 
 @Component({
   selector: "lg-projects",

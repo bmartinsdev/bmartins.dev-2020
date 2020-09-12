@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 
 declare global {
+  var mode: string;
   var color: string;
   var bgColor: string;
   var grey50: string;
@@ -28,6 +29,17 @@ export class GlobalService {
   }
 
   updateColors(theme) {
+    if (theme === "swap")
+      theme = globalThis.mode === "light" ? "dark" : "light";
+
+    globalThis.mode = theme;
+    const html = document.getElementsByTagName("html")[0];
+
+    if (globalThis.mode === "light") {
+      html.id = "light-mode";
+    } else {
+      html.id = "dark-mode";
+    }
     switch (theme) {
       case "light":
         globalThis.color = "#D28F3C";
@@ -38,6 +50,12 @@ export class GlobalService {
         globalThis.grey800 = "#1C1C1C";
         break;
       case "dark":
+        globalThis.color = "#D28F3C";
+        globalThis.bgColor = "#1C1C1C";
+        globalThis.grey50 = "#1C1C1C";
+        globalThis.grey200 = "#777777";
+        globalThis.grey600 = "#CCCCCC";
+        globalThis.grey800 = "#FAFAFA";
         break;
     }
   }

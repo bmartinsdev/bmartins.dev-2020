@@ -4,6 +4,15 @@
 <menu-toggle
   class="animate__animated animate__fadeIn animate__delay-2s"
 ></menu-toggle>
+<button
+  class="dark-mode animate__animated animate__fadeIn animate__delay-3s"
+  (click)="toggleDarkMode()"
+>
+  <i-feather *ngIf="!darkMode; else close" name="moon"></i-feather>
+</button>
+<ng-template #close>
+  <i-feather class="toggled" name="sun"></i-feather>
+</ng-template>
 <div class="lg-container">
   <div
     class="lg-container-overlay"

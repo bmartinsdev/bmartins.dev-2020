@@ -11,6 +11,8 @@ import {
   X,
   Link,
   Github,
+  Sun,
+  Moon,
 } from "angular-feather/icons";
 import { MenuToggleComponent } from "../shared/menu-toggle/menu-toggle.component";
 import { SidebarComponent } from "../shared/sidebar/sidebar.component";
@@ -30,6 +32,8 @@ const icons = {
   Github,
   Link,
   X,
+  Sun,
+  Moon,
 };
 
 @NgModule({

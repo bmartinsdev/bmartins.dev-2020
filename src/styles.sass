@@ -12,6 +12,7 @@
 html
     font-family: $content-font
     background-color: $white
+    color: $black
 
 button
     padding: 10px 20px
@@ -105,6 +106,33 @@ sidebar
 
 .disabled
     color: $grey-600!important
+
+.dark-mode
+    position: absolute
+    z-index: 11
+    padding: 0!important
+    transition: left $fast
+    @include hardwareAccelerated
+    right: 1.6rem
+    top: 1.6rem
+    i-feather
+        width: 1.5rem!important
+        height: 1.5rem!important
+    .toggled
+        color: $white
+
+// DARK MODE
+html#dark-mode
+    background-color: $dm-grey-50
+    color: $dm-black
+#dark-mode
+    .disabled
+        color: $dm-grey-600!important
+    .lg-container-overlay
+        background-color: $dm-grey-50-80
+    menu-toggle
+        i-feather
+            color: $dm-black
 
 
 // Lightbox
