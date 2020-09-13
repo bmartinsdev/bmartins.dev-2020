@@ -8,8 +8,8 @@ import { SharedModule } from "./modules/shared.module";
 import { CoreModule } from "./modules/core.module";
 import { TestingComponent } from "./testing/testing.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import { ServiceWorkerModule } from "@angular/service-worker";
+import { environment } from "../environments/environment";
 
 @NgModule({
   declarations: [AppComponent, TestingComponent, PageNotFoundComponent],
@@ -19,7 +19,9 @@ import { environment } from '../environments/environment';
     SharedModule,
     AppRoutingModule,
     CoreModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register("/ngsw-worker.js", {
+      enabled: environment.production,
+    }),
   ],
   bootstrap: [AppComponent],
 })
