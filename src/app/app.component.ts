@@ -41,7 +41,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.global.menuState.subscribe((state) => (this.menuToggle = state));
-    this.global.updateColors("light");
+    this.loadDarkModeState();
   }
 
   toggleDarkMode() {
@@ -51,5 +51,12 @@ export class AppComponent {
 
   closeMenu() {
     this.global.toggleMenu();
+  }
+
+  loadDarkModeState() {
+    let savedState = localStorage.getItem("lugh-app-dark-mode");
+    this.darkMode = savedState === "dark";
+    if (this.darkMode) this.global.updateColors("dark");
+    else this.global.updateColors("light");
   }
 }

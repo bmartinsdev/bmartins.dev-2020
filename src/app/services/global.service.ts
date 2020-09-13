@@ -33,6 +33,8 @@ export class GlobalService {
       theme = globalThis.mode === "light" ? "dark" : "light";
 
     globalThis.mode = theme;
+    localStorage.setItem("lugh-app-dark-mode", theme);
+
     const html = document.getElementsByTagName("html")[0];
 
     if (globalThis.mode === "light") {
