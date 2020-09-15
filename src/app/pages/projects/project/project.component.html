@@ -22,6 +22,7 @@
         blurred
         [original]="item.original"
         class="blurred"
+        [alt]="project.title"
       />
     </div>
   </div>
@@ -38,6 +39,7 @@
           <a
             href="{{ tag.url }}"
             target="_blank"
+            rel="noreferrer noopener"
             class="button"
             [ngStyle]="{ 'background-color': tag.bg, color: tag.color }"
           >
@@ -49,13 +51,21 @@
       <ul class="links">
         <li *ngIf="project.previewUrl" class="button hover-fade">
           <i-feather name="link"></i-feather>
-          <a href="{{ project.previewUrl }}" target="_blank">
+          <a
+            href="{{ project.previewUrl }}"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             {{ project.previewUrl }}
           </a>
         </li>
         <li *ngIf="project.repoUrl" class="button hover-fade">
           <i-feather name="github"></i-feather>
-          <a href="{{ project.repoUrl }}" target="_blank">
+          <a
+            href="{{ project.repoUrl }}"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             {{ project.repoUrl }}
           </a>
         </li>
