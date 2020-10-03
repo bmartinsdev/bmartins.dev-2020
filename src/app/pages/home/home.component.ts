@@ -7,7 +7,12 @@ import { Component } from "@angular/core";
 })
 export class HomeComponent {
   hovered: boolean = false;
-  
+  loaded: boolean = false;
+
+  ngOnInit() {
+    setTimeout(() => (this.loaded = true), 2000);
+  }
+
   public mouseHoverToggle = (state) => {
     this.hovered = state;
   };
