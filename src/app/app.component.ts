@@ -16,7 +16,7 @@ import {
 export class AppComponent {
   menuToggle: boolean = true;
   loading: boolean = true;
-  darkMode: boolean = false;
+  darkMode: boolean = true;
 
   constructor(private global: GlobalService, private router: Router) {
     this.router.events.subscribe((event: Event) => {

@@ -1,6 +1,5 @@
 const gulp = require("gulp");
 const spawn = require("child_process").spawn;
-const { connectionString, dest, orig } = require("../credentials");
 
 // Builds angular app
 function build(cb) {
@@ -48,5 +47,5 @@ function sync(cb) {
   });
 }
 
-exports.deploy = gulp.series(build, sync);
+exports.deploy = gulp.series(build);
 exports.sync = gulp.series(sync);
