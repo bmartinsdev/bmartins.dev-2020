@@ -7,11 +7,11 @@ import { TestingComponent } from "./testing/testing.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
 
 const routes: Routes = [
-  { path: "", loadChildren: "./modules/home.module#HomeModule" },
-  { path: "about", loadChildren: "./modules/about.module#AboutModule" },
+  { path: "", loadChildren: () => import('./modules/home.module').then(m => m.HomeModule) },
+  { path: "about", loadChildren: () => import('./modules/about.module').then(m => m.AboutModule) },
   {
     path: "projects",
-    loadChildren: "./modules/projects.module#ProjectsModule",
+    loadChildren: () => import('./modules/projects.module').then(m => m.ProjectsModule),
   },
   { path: "test", component: TestingComponent },
   { path: "404", component: PageNotFoundComponent },
