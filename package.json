@@ -30,7 +30,6 @@
     "angular-feather": "^6.0.8",
     "angularfire2": "^5.4.2",
     "firebase": "^7.20.0",
-    "node-sass": "^4.14.0",
     "p5": "^1.1.9",
     "rxjs": "^6.6.3",
     "sass": "^1.26.10",
